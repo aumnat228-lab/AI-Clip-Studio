@@ -1,0 +1,11 @@
+{
+  "name": "AI Clip Studio",
+  "short_name": "AI Clip Studio",
+  "description": "เครื่องมือวางเรื่องและสร้างพรอมต์สำหรับคลิป AI",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090a10",
+  "theme_color": "#090a10",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

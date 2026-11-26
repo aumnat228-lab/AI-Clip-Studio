@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Clip Studio Mobile</title>
+<style>
+:root{--bg:#090a10;--panel:#141620;--panel2:#1b1e2a;--text:#f3f4f6;--muted:#9ca3af;--pink:#ff3d8d;--orange:#ff7138;--gold:#f6c453;--blue:#5bc0eb;--green:#35d49a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#252039 0,transparent 42%),var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:90px}
+header{position:sticky;top:0;z-index:5;background:#0b0c13ee;backdrop-filter:blur(12px);border-bottom:1px solid #292b39;padding:14px 16px}header h1{margin:0;font-size:20px}header small{color:var(--muted)}
+main{max-width:800px;margin:auto;padding:14px;display:grid;gap:14px}.panel{background:linear-gradient(160deg,#171923,#101119);border:1px solid #2c2e3b;border-radius:18px;padding:15px;box-shadow:0 8px 25px #0003}.panel h2{font-size:16px;margin:0 0 12px}.section{display:grid;gap:10px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.label{font-size:12px;color:var(--muted);min-width:65px}.pill,button{border:1px solid #383b4c;background:#202230;color:#e5e7eb;padding:9px 12px;border-radius:12px;font-size:13px;cursor:pointer}.pill.active{border-color:var(--pink);background:#402138;box-shadow:0 0 0 1px #ff3d8d55}.primary{background:linear-gradient(90deg,#ff1680,#ff672f);border:0;color:white;font-weight:700;width:100%;padding:14px;border-radius:14px;font-size:15px}.preset{border-color:#d69b36;background:#392b1a;color:#ffe4a1}.notice{background:#3b2c15;border:1px solid #806025;color:#ffe2a0;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}.summary{font-size:13px;line-height:1.65;color:#d8d9e2}.muted{color:var(--muted)}.hidden{display:none!important}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{background:#1b1d28;border:1px solid #303243;padding:12px;border-radius:14px}.card h3{margin:0 0 8px;font-size:14px}.card p{margin:4px 0;font-size:13px;color:#c6c8d2;line-height:1.5}.episode-tabs{display:flex;gap:7px;overflow:auto;padding-bottom:5px}.episode-tabs button{white-space:nowrap}.shot{padding:12px;background:#1a1c27;border:1px solid #303243;border-radius:14px;display:grid;gap:8px}.shot h3{font-size:13px;margin:0;color:#ffd67a}.shot textarea{width:100%;min-height:80px;resize:vertical;background:#0e1018;color:white;border:1px solid #353748;border-radius:10px;padding:10px;font:14px inherit}.shot input{width:100%;background:#0e1018;color:white;border:1px solid #353748;border-radius:10px;padding:9px}.shot small{color:var(--muted)}.sticky-bottom{position:fixed;bottom:0;left:0;right:0;z-index:4;background:#10111aee;backdrop-filter:blur(10px);border-top:1px solid #303243;padding:10px 14px env(safe-area-inset-bottom);display:flex;gap:8px}.sticky-bottom button{flex:1}.tag{font-size:11px;color:#c5c6d3;background:#202230;padding:6px 9px;border-radius:9px}.exportrow{display:flex;flex-wrap:wrap;gap:8px}details summary{cursor:pointer;font-weight:700;color:#9de3ff}#workflow{line-height:1.65;font-size:13px}@media(max-width:480px){.two{grid-template-columns:1fr}header h1{font-size:18px}.panel{padding:13px}}
+</style>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#090a10">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js").catch(()=>{}));}</script>
+</head>
+<body>
+<header><h1>🎬 AI Clip Studio</h1><small>Mobile Studio • Story • Prompt • Export</small></header>
+<main>
+<section class="panel section">
+<h2>ตั้งค่าการสร้างเรื่อง</h2>
+<div class="row"><span class="label">หมวด</span><button class="pill active" id="catm" onclick="setCat('moral')">🎭 ละครคุณธรรม</button><button class="pill" id="catv" onclick="setCat('vertical')">💎 ละครแนวตั้ง หล่อสวย</button></div>
+<div class="row"><span class="label">หมวดย่อย</span><button class="pill active" data-sub="all" onclick="setSub('all')">ทุกแนว</button><button class="pill" data-sub="modern" onclick="setSub('modern')">สมัยใหม่</button><button class="pill" data-sub="ancient" onclick="setSub('ancient')">จีนโบราณ</button><button class="pill" data-sub="fantasy" onclick="setSub('fantasy')">แฟนตาซี</button></div>
+<div class="row"><span class="label">ทำคลิปใน</span><button class="pill active" id="flow" onclick="setPlatform('flow')">🎬 Google Flow</button><button class="pill" id="meta" onclick="setPlatform('meta')">♾️ Meta AI</button></div>
+<div class="row"><span class="label">ความยาว</span><button class="pill active" data-dur="30" onclick="setDuration(30)">30 วิ</button><button class="pill" data-dur="60" onclick="setDuration(60)">1 นาที</button><button class="pill" data-dur="90" onclick="setDuration(90)">1 นาทีครึ่ง</button></div>
+<div class="row"><span class="label">รูปแบบ</span><button class="pill active" id="single" onclick="setFormat('single')">จบในตอนเดียว</button><button class="pill" id="series" onclick="setFormat('series')">ซีรีส์ต่อเนื่อง</button></div>
+<div id="summary" class="summary"></div>
+<button class="primary" onclick="createSeries()">✨ สร้างแผนเรื่องและบท</button>
+</section>
+<section class="panel section">
+<h2>ตัวอย่างสำเร็จรูป</h2>
+<button class="pill preset" onclick="loadPresident()">💎 ตัวอย่างละครแนวตั้ง: ท่านประธาน</button>
+<button class="pill" onclick="loadQuick('พ่อคนที่สอง')">เรื่อง: พ่อคนที่สอง</button>
+<button class="pill" onclick="loadQuick('ปมมรดกบ้านริมน้ำ')">ปมมรดกบ้านริมน้ำ</button>
+<button class="pill" onclick="loadQuick('คาเฟ่ลับกลางดึก')">คาเฟ่ลับกลางดึก</button>
+<div class="row"><button onclick="document.getElementById('file').click()">📥 นำเข้า JSON/TXT</button><input id="file" type="file" accept=".json,.txt" hidden onchange="importFile(event)"></div>
+</section>
+<section class="panel">
+<div class="notice">⚠️ <b>คำเตือนก่อนใช้หารายได้:</b> เนื้อหาและคำสั่งสร้างโดยพยายามหลีกเลี่ยงสิ่งที่แพลตฟอร์มอาจจำกัดรายได้ แต่ไม่สามารถรับประกันผลการตรวจสอบหรือการสร้างรายได้ได้</div>
+</section>
+<section class="panel section hidden" id="workspace">
+<h2 id="seriesTitle">ซีรีส์</h2><p id="synopsis" class="summary"></p><div class="row" id="tags"></div>
+<div class="episode-tabs" id="episodetabs"></div>
+<div id="shots" class="section"></div>
+<div class="exportrow"><button onclick="copyEpisode()">📋 คัดลอกช็อตตอนนี้</button><button onclick="copyAll()">📋 คัดลอกทุกตอน</button><button onclick="downloadTxt()">⬇️ ดาวน์โหลด TXT</button><button onclick="downloadJson()">⬇️ ดาวน์โหลด JSON</button></div>
+</section>
+<section class="panel section">
+<h2>📝 Model & Workflow Comparison</h2>
+<div class="two">
+<div class="card"><h3 style="color:#ffc966">Google Flow</h3><p>เหมาะกับการสร้างคลิปแบบภาพอ้างอิงและควบคุมฉาก แต่ควรตรวจเครดิต เวลา และเงื่อนไขการใช้งาน</p></div>
+<div class="card"><h3 style="color:#ff8dbb">Meta AI</h3><p>เหมาะกับการทดลองสร้างคลิปสั้นและคอนเทนต์โซเชียล ความสามารถและข้อจำกัดขึ้นกับบัญชีและพื้นที่</p></div>
+<div class="card"><h3 style="color:#8bd8ff">Manus AI</h3><p>ผู้ช่วยงานหลายขั้นตอน ใช้ช่วยวางแผนและจัดการงาน ไม่ใช่เครื่องสร้างวิดีโอโดยตรงในทุกเวิร์กโฟลว์</p></div>
+<div class="card"><h3 style="color:#8ff0bd">ระบบ API</h3><p>วางระบบเชื่อมบริการภาพ/วิดีโอ เช่น Flux หรือ Veo ตาม API ที่เปิดให้ใช้งานจริง ต้องตรวจชื่อโมเดลและราคา ณ วันที่เชื่อมต่อ</p></div>
+</div>
+<div class="row"><button onclick="workflowPreset('meta')">ใช้แนวทาง Meta</button><button onclick="workflowPreset('flow')">ใช้แนวทาง Flow</button><button onclick="copyWorkflow()">คัดลอกโน้ต</button></div>
+</section>
+</main>
+<div class="sticky-bottom"><button onclick="createSeries()">✨ สร้างเรื่อง</button><button onclick="copyAll()">📋 คัดลอก</button><button onclick="downloadTxt()">⬇️ ส่งออก</button></div>
+<script>
+let state={cat:'moral',sub:'all',platform:'flow',duration:60,format:'single',series:null,ep:1};
+const labelSub={all:'ทุกแนว',modern:'สมัยใหม่',ancient:'จีนโบราณ',fantasy:'แฟนตาซี'};
+function unit(){return state.platform==='meta'?10:8}
+function setCat(v){state.cat=v;document.getElementById('catm').classList.toggle('active',v==='moral');document.getElementById('catv').classList.toggle('active',v==='vertical');updateSummary()}
+function setSub(v){state.sub=v;document.querySelectorAll('[data-sub]').forEach(b=>b.classList.toggle('active',b.dataset.sub===v));updateSummary()}
+function setPlatform(v){state.platform=v;document.getElementById('flow').classList.toggle('active',v==='flow');document.getElementById('meta').classList.toggle('active',v==='meta');updateSummary()}
+function setDuration(v){state.duration=v;document.querySelectorAll('[data-dur]').forEach(b=>b.classList.toggle('active',+b.dataset.dur===v));updateSummary()}
+function setFormat(v){state.format=v;document.getElementById('single').classList.toggle('active',v==='single');document.getElementById('series').classList.toggle('active',v==='series');updateSummary()}
+function updateSummary(){let count=state.duration===30?4:state.duration===60?6:8;let sec=count*unit();let time=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');document.getElementById('summary').innerHTML=`<b style="color:#ffd66e">สรุป:</b> ${state.cat==='vertical'?'ละครแนวตั้ง หล่อสวย':'ละครคุณธรรม'} • ${labelSub[state.sub]} • ${state.platform==='meta'?'Meta AI':'Google Flow'} • ${count} ช็อต × ${unit()} วิ ≈ ${time} นาที/ตอน • ${state.format==='series'?'ซีรีส์':'จบในตอนเดียว'}`;}
+function loadPresident(){state.cat='vertical';state.sub='modern';state.format='series';setCat('vertical');setSub('modern');setFormat('series');state.series=presidentData();render();document.getElementById('workspace').scrollIntoView({behavior:'smooth'});}
+function presidentData(){return {title:'ประธานหมื่นล้านคือสามีฉัน',synopsis:'เฉินหว่านชิง ดีไซเนอร์จิวเวลรี่สาวถูกคู่หมั้นทิ้งในวันจดทะเบียน เธอตัดสินใจแต่งงานสายฟ้าแลบกับชายแปลกหน้าโดยไม่รู้ว่าเขาคือประธานบริษัทจิวเวลรี่ที่เธอกำลังจะเข้าทำงาน',cast:[{name:'เฉินหว่านชิง',desc:'ดีไซเนอร์จิวเวลรี่สาววัย 26 ปี รูปร่างเล็กบอบบาง หน้าสวยเฉี่ยว ผมประบ่า แต่งตัวหรูเรียบ'},{name:'เวินฉวีกง',desc:'ประธานบริษัทวัย 28 ปี สูงโปร่ง หน้าคมเข้ม สวมสูทดำเรียบหรู'},{name:'เฉินหว่านหรู',desc:'พี่สาวต่างแม่ วัย 27 ปี ท่าทางเชิดหยิ่ง แต่งตัวหรู'}],episodes:[
+{title:'วันแต่งงานที่ไม่มีเจ้าบ่าว',shots:[['ห้องจดทะเบียนสมรส','เฉินหว่านหรูเดินเข้ามาอย่างเย้ยหยัน เฉินหว่านชิงถือแฟ้มเอกสารและพยายามตั้งสติ','คู่หมั้นของเธอเปลี่ยนใจแล้ว เขาเลือกฉัน'],['ห้องจดทะเบียนสมรส','เฉินหว่านชิงมองเอกสารในมือ ก่อนเงยหน้าขึ้นอย่างเด็ดเดี่ยว','ฉันไม่เสียเวลารอคนที่ไม่เห็นค่าฉัน'],['ห้องจดทะเบียนสมรส','เวินฉวีกงยื่นปากกาให้เธออย่างสุภาพ','ถ้าคุณต้องการ เราจดทะเบียนด้วยกันได้'],['ห้องจดทะเบียนสมรส','ทั้งสองสบตากันอย่างลังเล เจ้าหน้าที่รออยู่ตรงหน้า','คุณแน่ใจหรือคะว่าเราควรทำแบบนี้'] ]},
+{title:'การพบกันในบริษัท',shots:[['โถงบริษัทจิวเวลรี่','เฉินหว่านชิงเดินเข้าบริษัทพร้อมแฟ้มออกแบบ พนักงานหันมอง','ฉันมาที่นี่เพื่อทำงาน ไม่ใช่เพื่อเรื่องส่วนตัว'],['ห้องประชุม','เฉินหว่านหรูมองเธออย่างประหลาดใจ','เธอได้เข้าทีมออกแบบนี้ด้วยเหรอ'],['ห้องประชุม','เวินฉวีกงเปิดแฟ้มผลงานและแนะนำเฉินหว่านชิง','ผลงานของเธอจะเป็นหัวใจของคอลเลกชันนี้'],['ห้องประชุม','เฉินหว่านชิงยิ้มเล็กน้อยและเริ่มนำเสนอแบบ','ฉันจะพิสูจน์ด้วยผลงานค่ะ'] ]},
+{title:'ความจริงของท่านประธาน',shots:[['ห้องประชุมใหญ่','ผู้บริหารเปิดเผยตำแหน่งของเวินฉวีกง เฉินหว่านหรูชะงัก','คุณคือประธานบริษัทจริงๆ เหรอ'],['ห้องประชุมใหญ่','เวินฉวีกงยืนเคียงข้างเฉินหว่านชิงอย่างสงบ','การตัดสินใจครั้งนี้เป็นของผม'],['ห้องประชุมใหญ่','เฉินหว่านชิงมองเขาอย่างประหลาดใจ','คุณไม่จำเป็นต้องปกป้องฉันก็ได้'],['ห้องประชุมใหญ่','เวินฉวีกงยิ้มบางๆ','ผมเลือกยืนข้างคนที่ผมเชื่อใจ'] ]},
+{title:'คำตอบจากหัวใจ',shots:[['ห้องจดทะเบียนสมรส','ทั้งคู่กลับมายืนที่เดิมพร้อมรอยยิ้ม','จำวันที่เราเป็นคนแปลกหน้ากันได้ไหม'],['สวนหน้าบริษัท','เวินฉวีกงจับมือเฉินหว่านชิงอย่างอ่อนโยน','ผมอยากให้ทุกวันต่อจากนี้เป็นการเลือกกันและกัน'],['สวนหน้าบริษัท','เฉินหว่านชิงหัวเราะเบาๆ และพยักหน้า','งั้นเรามาเริ่มต้นใหม่ด้วยกัน'],['สวนหน้าบริษัท','ทั้งคู่เดินเคียงข้างกัน แสงอาทิตย์อบอุ่นและภาพค่อยๆ fade out','เรื่องราวของเรายังมีอีกหลายหน้า'] ]}
+]};}
+function loadQuick(title){state.cat='moral';state.format='single';state.series={title,synopsis:'ตัวอย่างเรื่องสั้นที่แก้ไขต่อได้: '+title,cast:[],episodes:[{title:'ตอนที่ 1',shots:[['สถานที่เปิดเรื่อง','ตัวละครหลักพบเหตุการณ์ที่ทำให้เรื่องราวเริ่มต้น','วันนี้มีเรื่องที่ฉันต้องตัดสินใจ'],['สถานที่เกิดเหตุ','ตัวละครเผชิญความท้าทายและพยายามหาทางออก','ฉันจะไม่ยอมแพ้ง่ายๆ'],['จุดเปลี่ยน','เกิดเหตุการณ์พลิกผันและเปิดเผยข้อมูลใหม่','เดี๋ยวก่อน เรื่องนี้มีบางอย่างไม่ถูกต้อง'],['ฉากจบ','ตัวละครตัดสินใจและทิ้งประเด็นให้ผู้ชมคิด','สุดท้ายแล้ว เราจะเลือกทำสิ่งที่ถูกต้องหรือไม่']]}]};render();}
+function createSeries(){if(!state.series){loadQuick('เรื่องใหม่');return;}render();}
+function render(){if(!state.series)return;let w=document.getElementById('workspace');w.classList.remove('hidden');document.getElementById('seriesTitle').textContent=state.series.title;document.getElementById('synopsis').textContent=state.series.synopsis||'';document.getElementById('tags').innerHTML=(state.series.cast||[]).map(c=>`<span class="tag">${c.name}</span>`).join('');let tabs=document.getElementById('episodetabs');tabs.innerHTML=state.series.episodes.map((e,i)=>`<button class="${state.ep===i+1?'active':''}" onclick="selectEp(${i+1})">EP${i+1} • ${e.title}</button>`).join('');let ep=state.series.episodes[state.ep-1];document.getElementById('shots').innerHTML=ep.shots.map((s,i)=>`<div class="shot"><h3>Shot ${i+1} • ${s[0]}</h3><small>คำสั่งภาพ / การกระทำ</small><textarea onchange="editShot(${state.ep-1},${i},1,this.value)">${s[1]}</textarea><small>บทพูด</small><input value="${esc(s[2])}" onchange="editShot(${state.ep-1},${i},2,this.value)"></div>`).join('');}
+function selectEp(n){state.ep=n;render()}
+function editShot(ep,i,k,v){state.series.episodes[ep].shots[i][k]=v}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function buildText(){if(!state.series)return 'ยังไม่มีเรื่อง';return state.series.title+'\n'+(state.series.synopsis||'')+'\n\n'+state.series.episodes.map((e,i)=>'EP'+(i+1)+' '+e.title+'\n'+e.shots.map((s,j)=>`SHOT ${j+1} | ${s[0]}\nภาพ/การกระทำ: ${s[1]}\nบทพูด: ${s[2]}`).join('\n\n')).join('\n\n');}
+function copyEpisode(){if(!state.series)return;let e=state.series.episodes[state.ep-1];let t=e.title+'\n'+e.shots.map((s,i)=>`SHOT ${i+1} | ${s[0]}\n${s[1]}\nบทพูด: ${s[2]}`).join('\n\n');copy(t)}
+function copyAll(){copy(buildText())}
+function copy(t){if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>alert('คัดลอกแล้ว')).catch(()=>fallbackCopy(t));}else fallbackCopy(t)}
+function fallbackCopy(t){let a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();alert('คัดลอกแล้ว')}
+function downloadTxt(){download('AI-Clip-Studio.txt',buildText(),'text/plain;charset=utf-8')}
+function downloadJson(){download('AI-Clip-Studio.json',JSON.stringify(state.series,null,2),'application/json')}
+function download(name,data,type){let b=new Blob([data],{type}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+function importFile(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);state.series=x;state.ep=1;render()}catch{loadQuick('นำเข้าไฟล์ข้อความ');state.series.synopsis=String(r.result);render()}};r.readAsText(f)}
+function workflowPreset(v){setPlatform(v);alert('ปรับโหมด '+(v==='meta'?'Meta AI':'Google Flow'))}
+function copyWorkflow(){copy('Google Flow: ใช้ภาพอ้างอิงและตรวจสอบเครดิต/ข้อจำกัด\\nMeta AI: เหมาะทดลองสร้างคลิปสั้น ตรวจสอบสิทธิ์บัญชี\\nManus AI: ช่วยวางแผนและจัดการงาน\\nAPI: เชื่อมบริการที่มี API ใช้งานได้ ตรวจสอบราคาและชื่อโมเดล');}
+updateSummary();
+</script>
+</body></html>
