@@ -9,7 +9,11 @@
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#252039 0,transparent 42%),var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:90px}
 header{position:sticky;top:0;z-index:5;background:#0b0c13ee;backdrop-filter:blur(12px);border-bottom:1px solid #292b39;padding:14px 16px}header h1{margin:0;font-size:20px}header small{color:var(--muted)}
 main{max-width:800px;margin:auto;padding:14px;display:grid;gap:14px}.panel{background:linear-gradient(160deg,#171923,#101119);border:1px solid #2c2e3b;border-radius:18px;padding:15px;box-shadow:0 8px 25px #0003}.panel h2{font-size:16px;margin:0 0 12px}.section{display:grid;gap:10px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.label{font-size:12px;color:var(--muted);min-width:65px}.pill,button{border:1px solid #383b4c;background:#202230;color:#e5e7eb;padding:9px 12px;border-radius:12px;font-size:13px;cursor:pointer}.pill.active{border-color:var(--pink);background:#402138;box-shadow:0 0 0 1px #ff3d8d55}.primary{background:linear-gradient(90deg,#ff1680,#ff672f);border:0;color:white;font-weight:700;width:100%;padding:14px;border-radius:14px;font-size:15px}.preset{border-color:#d69b36;background:#392b1a;color:#ffe4a1}.notice{background:#3b2c15;border:1px solid #806025;color:#ffe2a0;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}.summary{font-size:13px;line-height:1.65;color:#d8d9e2}.muted{color:var(--muted)}.hidden{display:none!important}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{background:#1b1d28;border:1px solid #303243;padding:12px;border-radius:14px}.card h3{margin:0 0 8px;font-size:14px}.card p{margin:4px 0;font-size:13px;color:#c6c8d2;line-height:1.5}.episode-tabs{display:flex;gap:7px;overflow:auto;padding-bottom:5px}.episode-tabs button{white-space:nowrap}.shot{padding:12px;background:#1a1c27;border:1px solid #303243;border-radius:14px;display:grid;gap:8px}.shot h3{font-size:13px;margin:0;color:#ffd67a}.shot textarea{width:100%;min-height:80px;resize:vertical;background:#0e1018;color:white;border:1px solid #353748;border-radius:10px;padding:10px;font:14px inherit}.shot input{width:100%;background:#0e1018;color:white;border:1px solid #353748;border-radius:10px;padding:9px}.shot small{color:var(--muted)}.sticky-bottom{position:fixed;bottom:0;left:0;right:0;z-index:4;background:#10111aee;backdrop-filter:blur(10px);border-top:1px solid #303243;padding:10px 14px env(safe-area-inset-bottom);display:flex;gap:8px}.sticky-bottom button{flex:1}.tag{font-size:11px;color:#c5c6d3;background:#202230;padding:6px 9px;border-radius:9px}.exportrow{display:flex;flex-wrap:wrap;gap:8px}details summary{cursor:pointer;font-weight:700;color:#9de3ff}#workflow{line-height:1.65;font-size:13px}
-#char-role-panel{background:#171925;border:1px solid #31354a;border-radius:14px;padding:12px;display:grid;gap:10px}#charPreviewBox{display:none;align-items:center;gap:10px;background:#10121b;border:1px dashed #454a66;border-radius:12px;padding:8px}#charPreviewImg{width:54px;height:54px;object-fit:cover;border-radius:10px}#charRolePrompt{width:100%;min-height:68px;resize:vertical;background:#0e1018;color:#fff;border:1px solid #353748;border-radius:10px;padding:10px;font:13px/1.5 inherit}
+#char-role-panel{background:#171925;border:1px solid #31354a;border-radius:14px;padding:12px;display:grid;gap:10px}#charRolePrompt,#charImgPromptOut{width:100%;min-height:68px;resize:vertical;background:#0e1018;color:#fff;border:1px solid #353748;border-radius:10px;padding:10px;font:13px/1.5 inherit}.img-prompt-box{background:#121521;border:1px solid #2e3550;border-radius:12px;padding:10px;display:grid;gap:8px}
+.ref-slot{background:#12141e;border:1px solid #2d3247;border-radius:12px;padding:10px;display:grid;gap:8px}
+.ref-top{display:flex;align-items:center;gap:10px}
+.ref-thumb{width:54px;height:54px;object-fit:cover;border-radius:10px;background:#0b0d14;border:1px dashed #454a66;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);flex-shrink:0}
+.ref-input,.ref-todo{width:100%;background:#0e1018;color:#fff;border:1px solid #353748;border-radius:10px;padding:8px 10px;font:13px inherit}
 .age-input{width:84px;background:#0e1018;color:#fff;border:1px solid #353748;border-radius:10px;padding:8px 10px;font:13px inherit}
 .lang-check{display:inline-flex;align-items:center;gap:6px;border:1px solid #383b4c;background:#202230;color:#e5e7eb;padding:8px 11px;border-radius:12px;font-size:13px;cursor:pointer;user-select:none}.lang-check input{accent-color:#ff3d8d;width:15px;height:15px;margin:0;cursor:pointer}.lang-check.active{border-color:var(--pink);background:#402138;box-shadow:0 0 0 1px #ff3d8d55}
 @media(max-width:480px){.two{grid-template-columns:1fr}header h1{font-size:18px}.panel{padding:13px}}
@@ -34,17 +38,95 @@ main{max-width:800px;margin:auto;padding:14px;display:grid;gap:14px}.panel{backg
 <div class="row" id="langBox"><span class="label">บทพูด</span><label class="lang-check active" id="lbl-th"><input type="checkbox" value="th" checked onchange="toggleLang()"> 🇹🇭 ไทย</label><label class="lang-check" id="lbl-isan"><input type="checkbox" value="isan" onchange="toggleLang()"> 🌾 อีสาน</label><label class="lang-check" id="lbl-en"><input type="checkbox" value="en" onchange="toggleLang()"> 🇬🇧 อังกฤษ</label></div>
 <div id="summary" class="summary"></div>
 <div id="char-role-panel">
-  <div class="row" style="justify-content:space-between">
-    <b style="font-size:13px;color:#ffd67a">🖼️ รูปตัวละครอ้างอิง & คุณสมบัติตัวละคร</b>
-    <button type="button" onclick="document.getElementById('charImageInput').click()">เลือกรูปภาพ</button>
-    <input id="charImageInput" type="file" accept="image/*" hidden>
-  </div>
-  <div id="charPreviewBox">
-    <img id="charPreviewImg" alt="ตัวอย่างรูปตัวละคร">
-    <span id="charFileLabel" class="muted" style="font-size:12px"></span>
-  </div>
+  <b style="font-size:13px;color:#ffd67a">🖼️ รูปตัวละครอ้างอิง (สูงสุด 3 ภาพ) & คุณสมบัติตัวละคร</b>
+
   <div class="row">
-    <span class="label">เพศ</span>
+    <span class="label">จำนวนแนบ</span>
+    <button type="button" class="pill active" data-refcount="1" onclick="setRefCountMode('1')">แนบ 1 รูป</button>
+    <button type="button" class="pill" data-refcount="3" onclick="setRefCountMode('3')">แนบ 2-3 รูป</button>
+    <label class="lang-check" id="lbl-more3"><input type="checkbox" id="moreThan3Check" onchange="toggleMoreThan3()"> มากกว่า 3 รูป / หลายตัวละคร</label>
+  </div>
+
+  <!-- ช่องแนบรูปที่ 1 -->
+  <div class="ref-slot" id="refSlot1">
+    <div class="ref-top">
+      <img id="refImg1" class="ref-thumb hidden" alt="รูปที่ 1">
+      <div id="refEmpty1" class="ref-thumb">รูป 1</div>
+      <div style="flex:1;display:grid;gap:6px">
+        <div class="row" style="justify-content:space-between">
+          <b style="font-size:12px;color:#ffd67a">รูปที่ 1</b>
+          <div class="row">
+            <button type="button" onclick="document.getElementById('refFile1').click()">เลือกรูป 1</button>
+            <button type="button" onclick="clearRefSlot(1)">ล้าง</button>
+          </div>
+          <input id="refFile1" type="file" accept="image/*" hidden onchange="handleRefFile(1,event)">
+        </div>
+        <input id="refName1" class="ref-input" type="text" placeholder="ใส่ชื่อรูปที่ 1 (เช่น ตัวเอก / ท่านประธาน)" oninput="updateRefField(1,'name',this.value)">
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">เพศรูป 1</span>
+      <button type="button" class="pill active" data-rg1="ไม่ระบุ" onclick="setRefGender(1,'ไม่ระบุ')">ไม่ระบุ</button>
+      <button type="button" class="pill" data-rg1="ผู้หญิง" onclick="setRefGender(1,'ผู้หญิง')">ผู้หญิง</button>
+      <button type="button" class="pill" data-rg1="ผู้ชาย" onclick="setRefGender(1,'ผู้ชาย')">ผู้ชาย</button>
+    </div>
+    <input id="refTodo1" class="ref-todo" type="text" placeholder="ต้องการให้รูปที่ 1 ทำอะไร เช่น หันมามองกล้อง สีหน้าจริงจัง ยื่นเอกสาร..." oninput="updateRefField(1,'todo',this.value)">
+  </div>
+
+  <!-- ช่องแนบรูปที่ 2 -->
+  <div class="ref-slot hidden" id="refSlot2">
+    <div class="ref-top">
+      <img id="refImg2" class="ref-thumb hidden" alt="รูปที่ 2">
+      <div id="refEmpty2" class="ref-thumb">รูป 2</div>
+      <div style="flex:1;display:grid;gap:6px">
+        <div class="row" style="justify-content:space-between">
+          <b style="font-size:12px;color:#8bd8ff">รูปที่ 2</b>
+          <div class="row">
+            <button type="button" onclick="document.getElementById('refFile2').click()">เลือกรูป 2</button>
+            <button type="button" onclick="clearRefSlot(2)">ล้าง</button>
+          </div>
+          <input id="refFile2" type="file" accept="image/*" hidden onchange="handleRefFile(2,event)">
+        </div>
+        <input id="refName2" class="ref-input" type="text" placeholder="ใส่ชื่อรูปที่ 2 (เช่น คู่กรณี / เพื่อน / สัตว์เลี้ยง)" oninput="updateRefField(2,'name',this.value)">
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">เพศรูป 2</span>
+      <button type="button" class="pill active" data-rg2="ไม่ระบุ" onclick="setRefGender(2,'ไม่ระบุ')">ไม่ระบุ</button>
+      <button type="button" class="pill" data-rg2="ผู้หญิง" onclick="setRefGender(2,'ผู้หญิง')">ผู้หญิง</button>
+      <button type="button" class="pill" data-rg2="ผู้ชาย" onclick="setRefGender(2,'ผู้ชาย')">ผู้ชาย</button>
+    </div>
+    <input id="refTodo2" class="ref-todo" type="text" placeholder="ต้องการให้รูปที่ 2 ทำอะไร เช่น เดินเข้ามาขัดจังหวะ พูดโต้ตอบ..." oninput="updateRefField(2,'todo',this.value)">
+  </div>
+
+  <!-- ช่องแนบรูปที่ 3 -->
+  <div class="ref-slot hidden" id="refSlot3">
+    <div class="ref-top">
+      <img id="refImg3" class="ref-thumb hidden" alt="รูปที่ 3">
+      <div id="refEmpty3" class="ref-thumb">รูป 3</div>
+      <div style="flex:1;display:grid;gap:6px">
+        <div class="row" style="justify-content:space-between">
+          <b style="font-size:12px;color:#8ff0bd">รูปที่ 3</b>
+          <div class="row">
+            <button type="button" onclick="document.getElementById('refFile3').click()">เลือกรูป 3</button>
+            <button type="button" onclick="clearRefSlot(3)">ล้าง</button>
+          </div>
+          <input id="refFile3" type="file" accept="image/*" hidden onchange="handleRefFile(3,event)">
+        </div>
+        <input id="refName3" class="ref-input" type="text" placeholder="ใส่ชื่อรูปที่ 3 (เช่น ตัวประกอบ / คนกลาง / ฉากเพิ่ม)" oninput="updateRefField(3,'name',this.value)">
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">เพศรูป 3</span>
+      <button type="button" class="pill active" data-rg3="ไม่ระบุ" onclick="setRefGender(3,'ไม่ระบุ')">ไม่ระบุ</button>
+      <button type="button" class="pill" data-rg3="ผู้หญิง" onclick="setRefGender(3,'ผู้หญิง')">ผู้หญิง</button>
+      <button type="button" class="pill" data-rg3="ผู้ชาย" onclick="setRefGender(3,'ผู้ชาย')">ผู้ชาย</button>
+    </div>
+    <input id="refTodo3" class="ref-todo" type="text" placeholder="ต้องการให้รูปที่ 3 ทำอะไร เช่น ยืนสังเกตการณ์ พยักหน้า..." oninput="updateRefField(3,'todo',this.value)">
+  </div>
+
+  <div class="row">
+    <span class="label">เพศหลัก</span>
     <button type="button" class="pill active" data-gender="ไม่ระบุ" onclick="setGender('ไม่ระบุ')">ไม่ระบุ</button>
     <button type="button" class="pill" data-gender="ผู้หญิง" onclick="setGender('ผู้หญิง')">ผู้หญิง</button>
     <button type="button" class="pill" data-gender="ผู้ชาย" onclick="setGender('ผู้ชาย')">ผู้ชาย</button>
@@ -81,7 +163,18 @@ main{max-width:800px;margin:auto;padding:14px;display:grid;gap:14px}.panel{backg
     <button type="button" class="pill char-role-chip" data-role="ผู้เล่าเรื่อง/เพื่อนสนิทคอยให้คำปรึกษา">ผู้เล่าเรื่อง</button>
     <button type="button" class="pill char-role-chip" data-role="ตัวละครน่ารักทำกิจกรรมในชีวิตประจำวัน">สายน่ารัก</button>
   </div>
-  <textarea id="charRolePrompt" placeholder="พิมพ์บทบาทหรือคาแรกเตอร์ที่ต้องการให้ตัวละครแสดง เช่น แต่งตัวเรียบหรู ท่าทางมั่นใจ พูดจาชัดเจน..."></textarea>
+  <textarea id="charRolePrompt" placeholder="พิมพ์บทบาทหรือคาแรกเตอร์รวมที่ต้องการให้ตัวละครแสดง เช่น แต่งตัวเรียบหรู ท่าทางมั่นใจ พูดจาชัดเจน..."></textarea>
+  <div class="img-prompt-box">
+    <div class="row" style="justify-content:space-between">
+      <b style="font-size:12px;color:#9de3ff">🎨 Prompt สร้างรูปตัวละครพร้อมคำสั่ง (นำไปวางเจนภาพ/คลิป)</b>
+      <button type="button" onclick="rebuildCharPrompt()">รีเฟรชคำสั่งภาพ</button>
+    </div>
+    <textarea id="charImgPromptOut" readonly></textarea>
+    <div class="row">
+      <button type="button" onclick="copyCharImagePrompt()">📋 คัดลอก Prompt ภาพ (EN)</button>
+      <button type="button" onclick="copyCharThaiSpec()">📋 คัดลอกคำสั่งตัวละคร (TH)</button>
+    </div>
+  </div>
 </div>
 <button class="primary" onclick="createSeries()">✨ สร้างแผนเรื่องและบท</button>
 </section>
@@ -115,27 +208,165 @@ main{max-width:800px;margin:auto;padding:14px;display:grid;gap:14px}.panel{backg
 </main>
 <div class="sticky-bottom"><button onclick="createSeries()">✨ สร้างเรื่อง</button><button onclick="copyAll()">📋 คัดลอก</button><button onclick="downloadTxt()">⬇️ ส่งออก</button></div>
 <script>
-let state={cat:'moral',sub:'all',platform:'flow',duration:60,format:'single',langs:['th'],gender:'ไม่ระบุ',age:'',nationality:'ไม่ระบุ',skin:'ไม่ระบุ',series:null,ep:1};
+let state={cat:'moral',sub:'all',platform:'flow',duration:60,format:'single',langs:['th'],gender:'ไม่ระบุ',age:'',nationality:'ไม่ระบุ',skin:'ไม่ระบุ',refMode:'1',moreThan3:false,series:null,ep:1};
+let refs=[
+  {slot:1,fileName:'',dataUrl:'',name:'',gender:'ไม่ระบุ',todo:''},
+  {slot:2,fileName:'',dataUrl:'',name:'',gender:'ไม่ระบุ',todo:''},
+  {slot:3,fileName:'',dataUrl:'',name:'',gender:'ไม่ระบุ',todo:''}
+];
 const labelCat={moral:'ละครคุณธรรม',vertical:'ละครแนวตั้ง หล่อสวย',rural:'วิถีชีวิตพอเพียง / ชนบท',garden:'บ้านสวน / แต่งบ้าน',dhamma:'ธรรมะ / ข้อคิด',cooking:'ทำอาหาร / เมนูฮิต',pets:'สัตว์น่ารัก / แมวทำกิจกรรม',ghost:'ผีไทย / ลี้ลับ / เทศกาล',comedy:'ตลก / คอนเทนต์เทศกาลฮาๆ'};
 const labelSub={all:'ทุกแนว',modern:'สมัยใหม่',ancient:'จีนโบราณ',fantasy:'แฟนตาซี'};
 const labelLang={th:'ไทย',isan:'อีสาน',en:'อังกฤษ'};
+const mapGenderEn={'ผู้หญิง':'female character','ผู้ชาย':'male character','ไม่ระบุ':'character'};
+const mapNatEn={'ไทย':'Thai','ฝรั่ง':'Western Caucasian','จีน':'Chinese','ญี่ปุ่น':'Japanese','พม่า':'Burmese','ลาว':'Lao','ไม่ระบุ':''};
+const mapSkinEn={'ดำแดง':'deep reddish-brown skin','ดำมาก':'very dark skin','คล้ำ':'tanned dark skin','ขาว':'fair skin','ซีดจาง':'pale skin','ไม่ระบุ':''};
+const mapSubStyleEn={'all':'cinematic storytelling','modern':'modern contemporary setting','ancient':'ancient Chinese historical aesthetic','fantasy':'fantasy cinematic world'};
 function unit(){return state.platform==='meta'?10:8}
-function setCat(v){state.cat=v;document.querySelectorAll('[data-cat]').forEach(b=>b.classList.toggle('active',b.dataset.cat===v));updateSummary()}
-function setSub(v){state.sub=v;document.querySelectorAll('[data-sub]').forEach(b=>b.classList.toggle('active',b.dataset.sub===v));updateSummary()}
+function setCat(v){state.cat=v;document.querySelectorAll('[data-cat]').forEach(b=>b.classList.toggle('active',b.dataset.cat===v));updateSummary();rebuildCharPrompt()}
+function setSub(v){state.sub=v;document.querySelectorAll('[data-sub]').forEach(b=>b.classList.toggle('active',b.dataset.sub===v));updateSummary();rebuildCharPrompt()}
 function setPlatform(v){state.platform=v;document.getElementById('flow').classList.toggle('active',v==='flow');document.getElementById('meta').classList.toggle('active',v==='meta');updateSummary()}
 function setDuration(v){state.duration=v;document.querySelectorAll('[data-dur]').forEach(b=>b.classList.toggle('active',+b.dataset.dur===v));updateSummary()}
 function setFormat(v){state.format=v;document.getElementById('single').classList.toggle('active',v==='single');document.getElementById('series').classList.toggle('active',v==='series');updateSummary()}
-function setGender(v){state.gender=v;document.querySelectorAll('[data-gender]').forEach(b=>b.classList.toggle('active',b.dataset.gender===v));updateSummary();if(state.series)render()}
-function setAge(v){let n=String(v||'').replace(/[^\d]/g,'');if(n!==''&&+n>120)n='120';state.age=n;let inp=document.getElementById('charAge');if(inp&&inp.value!==n)inp.value=n;updateSummary();if(state.series)render()}
+function setGender(v){state.gender=v;document.querySelectorAll('[data-gender]').forEach(b=>b.classList.toggle('active',b.dataset.gender===v));updateSummary();rebuildCharPrompt();if(state.series)render()}
+function setAge(v){let n=String(v||'').replace(/[^\d]/g,'');if(n!==''&&+n>120)n='120';state.age=n;let inp=document.getElementById('charAge');if(inp&&inp.value!==n)inp.value=n;updateSummary();rebuildCharPrompt();if(state.series)render()}
 function randomAge(){let r=Math.floor(Math.random()*63)+18;setAge(r)}
 function clearAge(){setAge('')}
-function setNationality(v){state.nationality=v;document.querySelectorAll('[data-nat]').forEach(b=>b.classList.toggle('active',b.dataset.nat===v));updateSummary();if(state.series)render()}
-function setSkin(v){state.skin=v;document.querySelectorAll('[data-skin]').forEach(b=>b.classList.toggle('active',b.dataset.skin===v));updateSummary();if(state.series)render()}
+function setNationality(v){state.nationality=v;document.querySelectorAll('[data-nat]').forEach(b=>b.classList.toggle('active',b.dataset.nat===v));updateSummary();rebuildCharPrompt();if(state.series)render()}
+function setSkin(v){state.skin=v;document.querySelectorAll('[data-skin]').forEach(b=>b.classList.toggle('active',b.dataset.skin===v));updateSummary();rebuildCharPrompt();if(state.series)render()}
 function toggleLang(){let boxes=[...document.querySelectorAll('#langBox input[type="checkbox"]')];let picked=boxes.filter(x=>x.checked).map(x=>x.value);if(!picked.length){boxes[0].checked=true;picked=['th'];}state.langs=picked;boxes.forEach(x=>x.closest('label').classList.toggle('active',x.checked));updateSummary();if(state.series)render();}
+function setRefCountMode(m){
+  state.refMode=m;
+  document.querySelectorAll('[data-refcount]').forEach(b=>b.classList.toggle('active',b.dataset.refcount===m));
+  let show3=(m==='3');
+  document.getElementById('refSlot2').classList.toggle('hidden',!show3);
+  document.getElementById('refSlot3').classList.toggle('hidden',!show3);
+  updateSummary();rebuildCharPrompt();if(state.series)render();
+}
+function toggleMoreThan3(){
+  let cb=document.getElementById('moreThan3Check');
+  state.moreThan3=Boolean(cb&&cb.checked);
+  document.getElementById('lbl-more3').classList.toggle('active',state.moreThan3);
+  updateSummary();rebuildCharPrompt();if(state.series)render();
+}
+function handleRefFile(slot,ev){
+  let f=ev.target.files&&ev.target.files[0];
+  if(!f)return;
+  let item=refs[slot-1];
+  let rd=new FileReader();
+  rd.onload=()=>{
+    item.fileName=f.name;
+    item.dataUrl=rd.result;
+    let img=document.getElementById('refImg'+slot);
+    let empty=document.getElementById('refEmpty'+slot);
+    if(img){img.src=rd.result;img.classList.remove('hidden')}
+    if(empty){empty.classList.add('hidden')}
+    let nameInp=document.getElementById('refName'+slot);
+    if(nameInp&&!nameInp.value.trim()){
+      let baseName=f.name.replace(/\.[^/.]+$/,'');
+      nameInp.value=baseName;
+      item.name=baseName;
+    }
+    updateSummary();rebuildCharPrompt();if(state.series)render();
+  };
+  rd.readAsDataURL(f);
+}
+function clearRefSlot(slot){
+  let item=refs[slot-1];
+  item.fileName='';item.dataUrl='';item.name='';item.gender='ไม่ระบุ';item.todo='';
+  let fi=document.getElementById('refFile'+slot);if(fi)fi.value='';
+  let ni=document.getElementById('refName'+slot);if(ni)ni.value='';
+  let ti=document.getElementById('refTodo'+slot);if(ti)ti.value='';
+  let img=document.getElementById('refImg'+slot);if(img){img.src='';img.classList.add('hidden')}
+  let empty=document.getElementById('refEmpty'+slot);if(empty)empty.classList.remove('hidden');
+  setRefGender(slot,'ไม่ระบุ');
+}
+function setRefGender(slot,g){
+  refs[slot-1].gender=g;
+  document.querySelectorAll('[data-rg'+slot+']').forEach(b=>b.classList.toggle('active',b.dataset['rg'+slot]===g));
+  updateSummary();rebuildCharPrompt();if(state.series)render();
+}
+function updateRefField(slot,field,val){
+  refs[slot-1][field]=val;
+  updateSummary();rebuildCharPrompt();if(state.series)render();
+}
+function activeRefs(){
+  let maxSlot=state.refMode==='3'?3:1;
+  return refs.slice(0,maxSlot).filter(r=>r.dataUrl||r.name.trim()||r.todo.trim()||r.gender!=='ไม่ระบุ');
+}
+function refSummaryText(){
+  let list=activeRefs();
+  let parts=[];
+  if(list.length){
+    parts.push('แนบ '+list.length+' รูป ('+list.map(r=>{
+      let label=r.name.trim()||r.fileName||('รูปที่ '+r.slot);
+      let g=r.gender!=='ไม่ระบุ'?' ['+r.gender+']':'';
+      let act=r.todo.trim()?' -> ทำ: '+r.todo.trim():'';
+      return label+g+act;
+    }).join(' / ')+')');
+  }else{
+    parts.push(state.refMode==='3'?'โหมดแนบ 2-3 รูป (ยังไม่ได้เลือกรูป)':'โหมดแนบ 1 รูป (ยังไม่ได้เลือกรูป)');
+  }
+  if(state.moreThan3)parts.push('มากกว่า 3 รูป / หลายตัวละคร');
+  return parts.join(' • ');
+}
 function langText(){return (state.langs&&state.langs.length?state.langs:['th']).map(k=>labelLang[k]||k).join(' + ');}
 function langBlock(){return '[ภาษาบทพูด]: '+langText();}
-function charSpecText(){let parts=[];if(state.gender&&state.gender!=='ไม่ระบุ')parts.push('เพศ: '+state.gender);if(state.age!=='')parts.push('อายุ: '+state.age+' ปี');if(state.nationality&&state.nationality!=='ไม่ระบุ')parts.push('สัญชาติ: '+state.nationality);if(state.skin&&state.skin!=='ไม่ระบุ')parts.push('สีผิว: '+state.skin);return parts.join(' • ');}
-function updateSummary(){let count=state.duration===30?4:state.duration===60?6:8;let sec=count*unit();let time=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');let spec=charSpecText();document.getElementById('summary').innerHTML=`<b style="color:#ffd66e">สรุป:</b> ${labelCat[state.cat]||labelCat.moral} • ${labelSub[state.sub]} • บทพูด: ${langText()} • ${state.platform==='meta'?'Meta AI':'Google Flow'} • ${count} ช็อต × ${unit()} วิ ≈ ${time} นาที/ตอน • ${state.format==='series'?'ซีรีส์':'จบในตอนเดียว'}`+(spec?`<br><b style="color:#8ff0bd">ตัวละคร:</b> ${spec}`:'');}
+function charSpecText(){let parts=[];if(state.gender&&state.gender!=='ไม่ระบุ')parts.push('เพศหลัก: '+state.gender);if(state.age!=='')parts.push('อายุ: '+state.age+' ปี');if(state.nationality&&state.nationality!=='ไม่ระบุ')parts.push('สัญชาติ: '+state.nationality);if(state.skin&&state.skin!=='ไม่ระบุ')parts.push('สีผิว: '+state.skin);return parts.join(' • ');}
+function refsBlockTh(){
+  let lines=[];
+  let list=activeRefs();
+  if(list.length){
+    lines.push('[รายการรูปภาพอ้างอิง & คำสั่งรายตัวละคร]:');
+    list.forEach(r=>{
+      let title=r.name.trim()||r.fileName||('รูปที่ '+r.slot);
+      let fileNote=r.fileName?' (ไฟล์: '+r.fileName+')':'';
+      let gNote='เพศ: '+r.gender;
+      let todoNote='ต้องการให้ทำ: '+(r.todo.trim()||'แสดงตามบทบาทในฉาก');
+      lines.push(`- รูปที่ ${r.slot} "${title}"${fileNote} | ${gNote} | ${todoNote}`);
+    });
+  }
+  if(state.moreThan3){
+    lines.push('[หมายเหตุจำนวนภาพ]: มีมากกว่า 3 ภาพ หรือมีตัวละคร/องค์ประกอบเพิ่มเติมในฉาก ให้รักษาความต่อเนื่องของใบหน้าและชุดในทุกภาพ');
+  }
+  return lines.join('\n');
+}
+function buildImagePromptEn(){
+  let roleText=(window.characterState&&window.characterState.rolePrompt)||'';
+  let gEn=mapGenderEn[state.gender]||'character';
+  let ageEn=state.age!==''?(state.age+' years old '):'';
+  let natEn=mapNatEn[state.nationality]?(mapNatEn[state.nationality]+' '):'';
+  let skinEn=mapSkinEn[state.skin]?(mapSkinEn[state.skin]+', '):'';
+  let subEn=mapSubStyleEn[state.sub]||'cinematic lighting';
+  let list=activeRefs();
+  let refParts=[];
+  if(list.length){
+    list.forEach(r=>{
+      let who=r.name.trim()||('Ref '+r.slot);
+      let g=mapGenderEn[r.gender]||'character';
+      let act=r.todo.trim()||roleText||'in-character pose';
+      refParts.push(`Image ${r.slot} (${who}, ${g}): keep identity consistent, action: ${act}`);
+    });
+  }
+  let refEn=refParts.length?(refParts.join('; ')+'. '):'';
+  let moreEn=state.moreThan3?'Multi-image / ensemble scene (more than 3 references or multiple characters), keep strict visual consistency. ':'';
+  let actionEn=roleText?('Overall role & acting: '+roleText+', '):'';
+  return `${moreEn}${refEn}${ageEn}${natEn}${gEn}, ${skinEn}${actionEn}cinematic composition, ${subEn}, sharp focus, consistent character design, high detail`;
+}
+function rebuildCharPrompt(){
+  let out=document.getElementById('charImgPromptOut');
+  if(out)out.value=buildImagePromptEn();
+}
+function copyCharImagePrompt(){
+  rebuildCharPrompt();
+  let out=document.getElementById('charImgPromptOut');
+  if(out)copy(out.value);
+}
+function copyCharThaiSpec(){
+  let cb=charBlock();
+  let imgEn=buildImagePromptEn();
+  copy((cb||'[ยังไม่ได้เลือกคุณสมบัติตัวละคร]')+'\n[Prompt สร้างภาพตัวละคร]: '+imgEn);
+}
+function updateSummary(){let count=state.duration===30?4:state.duration===60?6:8;let sec=count*unit();let time=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');let spec=charSpecText();let rSum=refSummaryText();document.getElementById('summary').innerHTML=`<b style="color:#ffd66e">สรุป:</b> ${labelCat[state.cat]||labelCat.moral} • ${labelSub[state.sub]} • บทพูด: ${langText()} • ${state.platform==='meta'?'Meta AI':'Google Flow'} • ${count} ช็อต × ${unit()} วิ ≈ ${time} นาที/ตอน • ${state.format==='series'?'ซีรีส์':'จบในตอนเดียว'}`+(spec?`<br><b style="color:#8ff0bd">ตัวละคร:</b> ${spec}`:'')+`<br><b style="color:#8bd8ff">รูปอ้างอิง:</b> ${rSum}`;}
 function loadPresident(){state.cat='vertical';state.sub='modern';state.format='series';setCat('vertical');setSub('modern');setFormat('series');state.series=presidentData();render();document.getElementById('workspace').scrollIntoView({behavior:'smooth'});}
 function presidentData(){return {title:'ประธานหมื่นล้านคือสามีฉัน',synopsis:'เฉินหว่านชิง ดีไซเนอร์จิวเวลรี่สาวถูกคู่หมั้นทิ้งในวันจดทะเบียน เธอตัดสินใจแต่งงานสายฟ้าแลบกับชายแปลกหน้าโดยไม่รู้ว่าเขาคือประธานบริษัทจิวเวลรี่ที่เธอกำลังจะเข้าทำงาน',cast:[{name:'เฉินหว่านชิง',desc:'ดีไซเนอร์จิวเวลรี่สาววัย 26 ปี รูปร่างเล็กบอบบาง หน้าสวยเฉี่ยว ผมประบ่า แต่งตัวหรูเรียบ'},{name:'เวินฉวีกง',desc:'ประธานบริษัทวัย 28 ปี สูงโปร่ง หน้าคมเข้ม สวมสูทดำเรียบหรู'},{name:'เฉินหว่านหรู',desc:'พี่สาวต่างแม่ วัย 27 ปี ท่าทางเชิดหยิ่ง แต่งตัวหรู'}],episodes:[
 {title:'วันแต่งงานที่ไม่มีเจ้าบ่าว',shots:[['ห้องจดทะเบียนสมรส','เฉินหว่านหรูเดินเข้ามาอย่างเย้ยหยัน เฉินหว่านชิงถือแฟ้มเอกสารและพยายามตั้งสติ','คู่หมั้นของเธอเปลี่ยนใจแล้ว เขาเลือกฉัน'],['ห้องจดทะเบียนสมรส','เฉินหว่านชิงมองเอกสารในมือ ก่อนเงยหน้าขึ้นอย่างเด็ดเดี่ยว','ฉันไม่เสียเวลารอคนที่ไม่เห็นค่าฉัน'],['ห้องจดทะเบียนสมรส','เวินฉวีกงยื่นปากกาให้เธออย่างสุภาพ','ถ้าคุณต้องการ เราจดทะเบียนด้วยกันได้'],['ห้องจดทะเบียนสมรส','ทั้งสองสบตากันอย่างลังเล เจ้าหน้าที่รออยู่ตรงหน้า','คุณแน่ใจหรือคะว่าเราควรทำแบบนี้'] ]},
@@ -145,7 +376,7 @@ function presidentData(){return {title:'ประธานหมื่นล้�
 ]};}
 function loadQuick(title){state.format='single';state.series={title,synopsis:'ตัวอย่างเรื่องสั้นหมวด'+labelCat[state.cat]+'ที่แก้ไขต่อได้: '+title,cast:[],episodes:[{title:'ตอนที่ 1',shots:[['สถานที่เปิดเรื่อง','ตัวละครหลักพบเหตุการณ์ที่ทำให้เรื่องราวเริ่มต้น','วันนี้มีเรื่องที่ฉันต้องตัดสินใจ'],['สถานที่เกิดเหตุ','ตัวละครเผชิญความท้าทายและพยายามหาทางออก','ฉันจะไม่ยอมแพ้ง่ายๆ'],['จุดเปลี่ยน','เกิดเหตุการณ์พลิกผันและเปิดเผยข้อมูลใหม่','เดี๋ยวก่อน เรื่องนี้มีบางอย่างไม่ถูกต้อง'],['ฉากจบ','ตัวละครตัดสินใจและทิ้งประเด็นให้ผู้ชมคิด','สุดท้ายแล้ว เราจะเลือกทำสิ่งที่ถูกต้องหรือไม่']]}]};render();}
 function createSeries(){if(!state.series){loadQuick('เรื่องใหม่ ('+labelCat[state.cat]+')');return;}render();}
-function charBlock(){let lines=[];let spec=charSpecText();if(spec)lines.push('[คุณสมบัติตัวละคร]: '+spec);let role=typeof window.getCharacterPromptBlock==='function'?window.getCharacterPromptBlock():'';if(role)lines.push(role);return lines.join('\n');}
+function charBlock(){let lines=[];let spec=charSpecText();if(spec)lines.push('[คุณสมบัติตัวละคร]: '+spec);let rb=refsBlockTh();if(rb)lines.push(rb);let role=typeof window.getCharacterPromptBlock==='function'?window.getCharacterPromptBlock():'';if(role)lines.push(role);let imgP=buildImagePromptEn();if(imgP)lines.push('[Prompt ภาพตัวละคร]: '+imgP);return lines.join('\n');}
 function extraBlock(){return [langBlock(),charBlock()].filter(Boolean).join('\n');}
 function render(){if(!state.series)return;let w=document.getElementById('workspace');w.classList.remove('hidden');document.getElementById('seriesTitle').textContent=state.series.title;let eb=extraBlock();document.getElementById('synopsis').textContent=(state.series.synopsis||'')+(eb?'\n\n'+eb:'');document.getElementById('tags').innerHTML=(state.series.cast||[]).map(c=>`<span class="tag">${c.name}</span>`).join('');let tabs=document.getElementById('episodetabs');tabs.innerHTML=state.series.episodes.map((e,i)=>`<button class="${state.ep===i+1?'active':''}" onclick="selectEp(${i+1})">EP${i+1} • ${e.title}</button>`).join('');let ep=state.series.episodes[state.ep-1];document.getElementById('shots').innerHTML=ep.shots.map((s,i)=>`<div class="shot"><h3>Shot ${i+1} • ${s[0]}</h3><small>คำสั่งภาพ / การกระทำ</small><textarea onchange="editShot(${state.ep-1},${i},1,this.value)">${s[1]}</textarea><small>บทพูด (${langText()})</small><input value="${esc(s[2])}" onchange="editShot(${state.ep-1},${i},2,this.value)"></div>`).join('');}
 function selectEp(n){state.ep=n;render()}
@@ -163,6 +394,7 @@ function importFile(e){let f=e.target.files[0];if(!f)return;let r=new FileReader
 function workflowPreset(v){setPlatform(v);alert('ปรับโหมด '+(v==='meta'?'Meta AI':'Google Flow'))}
 function copyWorkflow(){copy('Google Flow: ใช้ภาพอ้างอิงและตรวจสอบเครดิต/ข้อจำกัด\\nMeta AI: เหมาะทดลองสร้างคลิปสั้น ตรวจสอบสิทธิ์บัญชี\\nManus AI: ช่วยวางแผนและจัดการงาน\\nAPI: เชื่อมบริการที่มี API ใช้งานได้ ตรวจสอบราคาและชื่อโมเดล');}
 updateSummary();
-(function(){const i=document.getElementById("charImageInput"),b=document.getElementById("charPreviewBox"),p=document.getElementById("charPreviewImg"),l=document.getElementById("charFileLabel"),r=document.getElementById("charRolePrompt");window.characterState={imageDataUrl:"",fileName:"",rolePrompt:""};if(i){i.addEventListener("change",e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{window.characterState.imageDataUrl=rd.result;window.characterState.fileName=f.name;if(p)p.src=rd.result;if(l)l.textContent=f.name;if(b)b.style.display="flex"};rd.readAsDataURL(f)})}if(r){r.addEventListener("input",()=>{window.characterState.rolePrompt=r.value.trim()})}document.querySelectorAll(".char-role-chip").forEach(c=>{c.addEventListener("click",()=>{const t="ให้ตัวละครในรูปภาพนี้แสดงเป็น: "+c.dataset.role;if(r)r.value=t;window.characterState.rolePrompt=t})});window.getCharacterPromptBlock=function(){const role=(r?r.value.trim():"")||window.characterState.rolePrompt||"",hasImg=Boolean(window.characterState.imageDataUrl);if(!hasImg&&!role)return"";const out=[];if(hasImg)out.push("[อ้างอิงรูปตัวละคร: "+(window.characterState.fileName||"uploaded_character")+"] รักษาใบหน้า โครงหน้า และเอกลักษณ์ของตัวละครจากรูปให้เหมือนเดิมในทุกฉาก");if(role)out.push("[คำสั่งบทบาทตัวละคร]: "+role);return out.join("\n")}})();
+rebuildCharPrompt();
+(function(){const r=document.getElementById("charRolePrompt");window.characterState={rolePrompt:""};if(r){r.addEventListener("input",()=>{window.characterState.rolePrompt=r.value.trim();rebuildCharPrompt();if(state.series)render()})}document.querySelectorAll(".char-role-chip").forEach(c=>{c.addEventListener("click",()=>{const t="ให้ตัวละครแสดงเป็น: "+c.dataset.role;if(r)r.value=t;window.characterState.rolePrompt=t;rebuildCharPrompt();if(state.series)render()})});window.getCharacterPromptBlock=function(){const role=(r?r.value.trim():"")||window.characterState.rolePrompt||"";return role?"[คำสั่งบทบาทตัวละครรวม]: "+role:"";}})();
 </script>
 </body></html>
