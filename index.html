@@ -3,212 +3,372 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>AI Clip Studio Mobile</title>
+<title>BAO SAKON AI • บ่าวสกล AI</title>
 <style>
 :root{--bg:#090a10;--panel:#141620;--panel2:#1b1e2a;--text:#f3f4f6;--muted:#9ca3af;--pink:#ff3d8d;--orange:#ff7138;--gold:#f6c453;--blue:#5bc0eb;--green:#35d49a}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#252039 0,transparent 42%),var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:90px}
-header{position:sticky;top:0;z-index:5;background:#0b0c13ee;backdrop-filter:blur(12px);border-bottom:1px solid #292b39;padding:14px 16px}header h1{margin:0;font-size:20px}header small{color:var(--muted)}
-main{max-width:800px;margin:auto;padding:14px;display:grid;gap:14px}.panel{background:linear-gradient(160deg,#171923,#101119);border:1px solid #2c2e3b;border-radius:18px;padding:15px;box-shadow:0 8px 25px #0003}.panel h2{font-size:16px;margin:0 0 12px}.section{display:grid;gap:10px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.label{font-size:12px;color:var(--muted);min-width:65px}.pill,button{border:1px solid #383b4c;background:#202230;color:#e5e7eb;padding:9px 12px;border-radius:12px;font-size:13px;cursor:pointer}.pill.active{border-color:var(--pink);background:#402138;box-shadow:0 0 0 1px #ff3d8d55}.primary{background:linear-gradient(90deg,#ff1680,#ff672f);border:0;color:white;font-weight:700;width:100%;padding:14px;border-radius:14px;font-size:15px}.preset{border-color:#d69b36;background:#392b1a;color:#ffe4a1}.notice{background:#3b2c15;border:1px solid #806025;color:#ffe2a0;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}.summary{font-size:13px;line-height:1.65;color:#d8d9e2}.muted{color:var(--muted)}.hidden{display:none!important}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card{background:#1b1d28;border:1px solid #303243;padding:12px;border-radius:14px}.card h3{margin:0 0 8px;font-size:14px}.card p{margin:4px 0;font-size:13px;color:#c6c8d2;line-height:1.5}.episode-tabs{display:flex;gap:7px;overflow:auto;padding-bottom:5px}.episode-tabs button{white-space:nowrap}.shot{padding:12px;background:#1a1c27;border:1px solid #303243;border-radius:14px;display:grid;gap:8px}.shot h3{font-size:13px;margin:0;color:#ffd67a}.shot textarea{width:100%;min-height:80px;resize:vertical;background:#0e1018;color:white;border:1px solid #353748;border-radius:10px;padding:10px;font:14px inherit}.shot input{width:100%;background:#0e1018;color:white;border:1px solid #353748;border-radius:10px;padding:9px}.shot small{color:var(--muted)}.sticky-bottom{position:fixed;bottom:0;left:0;right:0;z-index:4;background:#10111aee;backdrop-filter:blur(10px);border-top:1px solid #303243;padding:10px 14px env(safe-area-inset-bottom);display:flex;gap:8px}.sticky-bottom button{flex:1}.tag{font-size:11px;color:#c5c6d3;background:#202230;padding:6px 9px;border-radius:9px}.exportrow{display:flex;flex-wrap:wrap;gap:8px}details summary{cursor:pointer;font-weight:700;color:#9de3ff}#workflow{line-height:1.65;font-size:13px}
-#char-role-panel{background:#171925;border:1px solid #31354a;border-radius:14px;padding:12px;display:grid;gap:10px}#charRolePrompt,#charImgPromptOut{width:100%;min-height:68px;resize:vertical;background:#0e1018;color:#fff;border:1px solid #353748;border-radius:10px;padding:10px;font:13px/1.5 inherit}.img-prompt-box{background:#121521;border:1px solid #2e3550;border-radius:12px;padding:10px;display:grid;gap:8px}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 20% 0,#252039 0,transparent 42%),var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:92px;min-height:100vh}
+header{position:sticky;top:0;z-index:10;background:#0b0c13ee;backdrop-filter:blur(12px);border-bottom:1px solid #292b39;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+header .brand h1{margin:0;font-size:18px}
+header .brand small{color:var(--muted);font-size:12px}
+.nav-btn{border:1px solid #3c4057;background:#1e2233;color:#fff;padding:8px 11px;border-radius:11px;font-size:12px;cursor:pointer;white-space:nowrap}
+.nav-btn.active{border-color:var(--gold);background:#3a2d16;color:#ffe6a8}
+
+/* หน้าแรก BAO SAKON AI */
+#homeScreen{max-width:680px;margin:auto;padding:24px 16px 40px;display:grid;gap:22px;background:radial-gradient(circle at 50% 8%,rgba(59,130,246,.22),transparent 48%),radial-gradient(circle at 80% 35%,rgba(236,72,153,.14),transparent 45%)}
+.hero-title-wrap{text-align:center;display:grid;gap:4px;margin-top:6px}
+.hero-main-title{margin:0;font-size:32px;font-weight:900;letter-spacing:1px;background:linear-gradient(180deg,#fff3be 0%,#f5b841 55%,#c47a13 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 6px 24px rgba(245,184,65,.2)}
+.hero-sub-title{margin:0;font-size:20px;font-weight:800;color:#ffffff;letter-spacing:.5px}
+.hero-info-card{display:flex;align-items:flex-start;gap:14px;background:rgba(17,22,42,.78);border:1px solid #2d385c;border-radius:20px;padding:14px;box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.hero-avatar{width:76px;height:76px;border-radius:16px;object-fit:cover;border:2px solid #f5b841;flex-shrink:0;background:#1a2038}
+.hero-badge{display:inline-block;background:linear-gradient(90deg,#3b1d6e,#6d28d9);border:1px solid #a855f7;color:#f3e8ff;font-weight:700;font-size:13px;padding:6px 14px;border-radius:999px;margin-bottom:8px}
+.hero-desc{margin:0;font-size:13.5px;line-height:1.55;color:#e5e9f5}
+.home-actions{display:grid;gap:16px;margin-top:8px}
+.home-big-btn{width:100%;padding:18px 20px;border-radius:20px;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:12px;cursor:pointer;transition:transform .12s ease,filter .12s ease;box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.home-big-btn:active{transform:scale(.98)}
+.btn-img-gold{background:linear-gradient(180deg,#f9c95b 0%,#e59c24 55%,#b96c0b 100%);border:2px solid #ffe49e;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.45)}
+.btn-vid-teal{background:linear-gradient(180deg,#3a8dde 0%,#1f6feb 55%,#149b8e 100%);border:2px solid #8ce9dd;color:#fff;text-shadow:0 2px 4px rgba(0,0,0,.45)}
+
+/* หน้าสตูดิโอ */
+.studio-wrap{max-width:800px;margin:auto;padding:14px;display:grid;gap:14px}
+.panel{background:linear-gradient(160deg,#171923,#101119);border:1px solid #2c2e3b;border-radius:18px;padding:15px;box-shadow:0 8px 25px #0003}
+.panel h2{font-size:16px;margin:0 0 12px}
+.section{display:grid;gap:10px}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.label{font-size:12px;color:var(--muted);min-width:65px}
+.pill,button{border:1px solid #383b4c;background:#202230;color:#e5e7eb;padding:9px 12px;border-radius:12px;font-size:13px;cursor:pointer}
+.pill.active{border-color:var(--pink);background:#402138;box-shadow:0 0 0 1px #ff3d8d55}
+.primary{background:linear-gradient(90deg,#ff1680,#ff672f);border:0;color:white;font-weight:700;width:100%;padding:14px;border-radius:14px;font-size:15px}
+.preset{border-color:#d69b36;background:#392b1a;color:#ffe4a1}
+.notice{background:#3b2c15;border:1px solid #806025;color:#ffe2a0;padding:12px;border-radius:13px;font-size:12px;line-height:1.5}
+.summary{font-size:13px;line-height:1.65;color:#d8d9e2}
+.muted{color:var(--muted)}
+.hidden{display:none!important}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#1b1d28;border:1px solid #303243;padding:12px;border-radius:14px}
+.card h3{margin:0 0 8px;font-size:14px}
+.card p{margin:4px 0;font-size:13px;color:#c6c8d2;line-height:1.5}
+.episode-tabs{display:flex;gap:7px;overflow:auto;padding-bottom:5px}
+.episode-tabs button{white-space:nowrap}
+.shot{padding:12px;background:#1a1c27;border:1px solid #303243;border-radius:14px;display:grid;gap:8px}
+.shot h3{font-size:13px;margin:0;color:#ffd67a}
+.shot textarea,.img-studio-area{width:100%;min-height:80px;resize:vertical;background:#0e1018;color:white;border:1px solid #353748;border-radius:10px;padding:10px;font:14px/1.5 inherit}
+.shot input,.text-box{width:100%;background:#0e1018;color:white;border:1px solid #353748;border-radius:10px;padding:9px 10px;font:13.5px inherit}
+.shot small{color:var(--muted)}
+.sticky-bottom{position:fixed;bottom:0;left:0;right:0;z-index:9;background:#10111aee;backdrop-filter:blur(10px);border-top:1px solid #303243;padding:10px 14px env(safe-area-inset-bottom);display:flex;gap:8px}
+.sticky-bottom button{flex:1}
+.tag{font-size:11px;color:#c5c6d3;background:#202230;padding:6px 9px;border-radius:9px}
+.exportrow{display:flex;flex-wrap:wrap;gap:8px}
+
+#char-role-panel{background:#171925;border:1px solid #31354a;border-radius:14px;padding:12px;display:grid;gap:10px}
+.img-prompt-box{background:#121521;border:1px solid #2e3550;border-radius:12px;padding:10px;display:grid;gap:8px}
 .ref-slot{background:#12141e;border:1px solid #2d3247;border-radius:12px;padding:10px;display:grid;gap:8px}
 .ref-top{display:flex;align-items:center;gap:10px}
 .ref-thumb{width:54px;height:54px;object-fit:cover;border-radius:10px;background:#0b0d14;border:1px dashed #454a66;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);flex-shrink:0}
-.ref-input,.ref-todo{width:100%;background:#0e1018;color:#fff;border:1px solid #353748;border-radius:10px;padding:8px 10px;font:13px inherit}
 .age-input{width:84px;background:#0e1018;color:#fff;border:1px solid #353748;border-radius:10px;padding:8px 10px;font:13px inherit}
-.lang-check{display:inline-flex;align-items:center;gap:6px;border:1px solid #383b4c;background:#202230;color:#e5e7eb;padding:8px 11px;border-radius:12px;font-size:13px;cursor:pointer;user-select:none}.lang-check input{accent-color:#ff3d8d;width:15px;height:15px;margin:0;cursor:pointer}.lang-check.active{border-color:var(--pink);background:#402138;box-shadow:0 0 0 1px #ff3d8d55}
-@media(max-width:480px){.two{grid-template-columns:1fr}header h1{font-size:18px}.panel{padding:13px}}
+.lang-check{display:inline-flex;align-items:center;gap:6px;border:1px solid #383b4c;background:#202230;color:#e5e7eb;padding:8px 11px;border-radius:12px;font-size:13px;cursor:pointer;user-select:none}
+.lang-check input{accent-color:#ff3d8d;width:15px;height:15px;margin:0;cursor:pointer}
+.lang-check.active{border-color:var(--pink);background:#402138;box-shadow:0 0 0 1px #ff3d8d55}
+@media(max-width:480px){.two{grid-template-columns:1fr}.hero-main-title{font-size:27px}.home-big-btn{font-size:18px;padding:16px}.panel{padding:13px}}
 </style>
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#090a10">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js").catch(()=>{}));}</script>
 </head>
 <body>
-<header><h1>🎬 AI Clip Studio</h1><small>Mobile Studio • Story • Prompt • Export</small></header>
-<main>
-<section class="panel section">
-<h2>ตั้งค่าการสร้างเรื่อง</h2>
-<div class="row"><span class="label">หมวด</span><button class="pill active" data-cat="moral" onclick="setCat('moral')">🎭 ละครคุณธรรม</button><button class="pill" data-cat="vertical" onclick="setCat('vertical')">💎 ละครแนวตั้ง หล่อสวย</button><button class="pill" data-cat="rural" onclick="setCat('rural')">🌾 วิถีชีวิตพอเพียง / ชนบท</button><button class="pill" data-cat="garden" onclick="setCat('garden')">🏡 บ้านสวน / แต่งบ้าน</button><button class="pill" data-cat="dhamma" onclick="setCat('dhamma')">🙏 ธรรมะ / ข้อคิด</button><button class="pill" data-cat="cooking" onclick="setCat('cooking')">🍳 ทำอาหาร / เมนูฮิต</button><button class="pill" data-cat="pets" onclick="setCat('pets')">🐱 สัตว์น่ารัก / แมวทำกิจกรรม</button><button class="pill" data-cat="ghost" onclick="setCat('ghost')">👻 ผีไทย / ลี้ลับ / เทศกาล</button><button class="pill" data-cat="comedy" onclick="setCat('comedy')">😂 ตลก / คอนเทนต์เทศกาลฮาๆ</button></div>
-<div class="row"><span class="label">หมวดย่อย</span><button class="pill active" data-sub="all" onclick="setSub('all')">ทุกแนว</button><button class="pill" data-sub="modern" onclick="setSub('modern')">สมัยใหม่</button><button class="pill" data-sub="ancient" onclick="setSub('ancient')">จีนโบราณ</button><button class="pill" data-sub="fantasy" onclick="setSub('fantasy')">แฟนตาซี</button></div>
-<div class="row"><span class="label">ทำคลิปใน</span><button class="pill active" id="flow" onclick="setPlatform('flow')">🎬 Google Flow</button><button class="pill" id="meta" onclick="setPlatform('meta')">♾️ Meta AI</button></div>
-<div class="row"><span class="label">ความยาว</span><button class="pill active" data-dur="30" onclick="setDuration(30)">30 วิ</button><button class="pill" data-dur="60" onclick="setDuration(60)">1 นาที</button><button class="pill" data-dur="90" onclick="setDuration(90)">1 นาทีครึ่ง</button></div>
-<div class="row"><span class="label">รูปแบบ</span><button class="pill active" id="single" onclick="setFormat('single')">จบในตอนเดียว</button><button class="pill" id="series" onclick="setFormat('series')">ซีรีส์ต่อเนื่อง</button></div>
-<div class="row" id="langBox"><span class="label">บทพูด</span><label class="lang-check active" id="lbl-th"><input type="checkbox" value="th" checked onchange="toggleLang()"> 🇹🇭 ไทย</label><label class="lang-check" id="lbl-isan"><input type="checkbox" value="isan" onchange="toggleLang()"> 🌾 อีสาน</label><label class="lang-check" id="lbl-en"><input type="checkbox" value="en" onchange="toggleLang()"> 🇬🇧 อังกฤษ</label></div>
-<div id="summary" class="summary"></div>
-<div id="char-role-panel">
-  <b style="font-size:13px;color:#ffd67a">🖼️ รูปตัวละครอ้างอิง (สูงสุด 3 ภาพ) & คุณสมบัติตัวละคร</b>
-
+<header>
+  <div class="brand">
+    <h1 id="topTitle">BAO SAKON AI</h1>
+    <small id="topSub">บ่าวสกล AI • หน้าแรก 2 ระบบ</small>
+  </div>
   <div class="row">
-    <span class="label">จำนวนแนบ</span>
-    <button type="button" class="pill active" data-refcount="1" onclick="setRefCountMode('1')">แนบ 1 รูป</button>
-    <button type="button" class="pill" data-refcount="3" onclick="setRefCountMode('3')">แนบ 2-3 รูป</button>
-    <label class="lang-check" id="lbl-more3"><input type="checkbox" id="moreThan3Check" onchange="toggleMoreThan3()"> มากกว่า 3 รูป / หลายตัวละคร</label>
+    <button type="button" class="nav-btn active" id="navHome" onclick="showScreen('home')">🏠 หน้าแรก</button>
+    <button type="button" class="nav-btn" id="navImage" onclick="showScreen('image')">🖼️ สร้างรูปภาพ</button>
+    <button type="button" class="nav-btn" id="navVideo" onclick="showScreen('video')">🎥 สร้างวิดีโอ</button>
+  </div>
+</header>
+
+<!-- 1. หน้าแรก BAO SAKON AI -->
+<section id="homeScreen">
+  <div class="hero-title-wrap">
+    <h1 class="hero-main-title">BAO SAKON AI</h1>
+    <p class="hero-sub-title">บ่าวสกล AI</p>
   </div>
 
-  <!-- ช่องแนบรูปที่ 1 -->
-  <div class="ref-slot" id="refSlot1">
-    <div class="ref-top">
-      <img id="refImg1" class="ref-thumb hidden" alt="รูปที่ 1">
-      <div id="refEmpty1" class="ref-thumb">รูป 1</div>
-      <div style="flex:1;display:grid;gap:6px">
-        <div class="row" style="justify-content:space-between">
-          <b style="font-size:12px;color:#ffd67a">รูปที่ 1</b>
-          <div class="row">
-            <button type="button" onclick="document.getElementById('refFile1').click()">เลือกรูป 1</button>
-            <button type="button" onclick="clearRefSlot(1)">ล้าง</button>
-          </div>
-          <input id="refFile1" type="file" accept="image/*" hidden onchange="handleRefFile(1,event)">
-        </div>
-        <input id="refName1" class="ref-input" type="text" placeholder="ใส่ชื่อรูปที่ 1 (เช่น ตัวเอก / ท่านประธาน)" oninput="updateRefField(1,'name',this.value)">
-      </div>
+  <div class="hero-info-card">
+    <svg class="hero-avatar" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-label="ไอคอนบ่าวสกล AI">
+      <rect width="80" height="80" rx="16" fill="#172038"/>
+      <circle cx="26" cy="40" r="10" fill="#d9a077"/>
+      <path d="M14 66c1-10 7-15 12-15s11 5 12 15z" fill="#111827"/>
+      <circle cx="44" cy="36" r="10" fill="#e5b18a"/>
+      <path d="M31 66c1-11 7-16 13-16s12 5 13 16z" fill="#1e3a8a"/>
+      <circle cx="62" cy="33" r="9" fill="#f3f4f6"/>
+      <path d="M51 66c1-12 6-18 11-18s10 6 11 18z" fill="#374151"/>
+    </svg>
+    <div>
+      <div class="hero-badge">สร้าง ai 2 ระบบ จบด้วยมือเรา</div>
+      <p class="hero-desc">สร้างเนื้อหาสาระจาก ai อย่างครบครัน ผู้ทดลองและออกแบบชุดคำสั่งตามสไตล์ที่เราชอบและนำไปใช้งานได้จริง</p>
     </div>
-    <div class="row">
-      <span class="label">เพศรูป 1</span>
-      <button type="button" class="pill active" data-rg1="ไม่ระบุ" onclick="setRefGender(1,'ไม่ระบุ')">ไม่ระบุ</button>
-      <button type="button" class="pill" data-rg1="ผู้หญิง" onclick="setRefGender(1,'ผู้หญิง')">ผู้หญิง</button>
-      <button type="button" class="pill" data-rg1="ผู้ชาย" onclick="setRefGender(1,'ผู้ชาย')">ผู้ชาย</button>
-    </div>
-    <input id="refTodo1" class="ref-todo" type="text" placeholder="ต้องการให้รูปที่ 1 ทำอะไร เช่น หันมามองกล้อง สีหน้าจริงจัง ยื่นเอกสาร..." oninput="updateRefField(1,'todo',this.value)">
   </div>
 
-  <!-- ช่องแนบรูปที่ 2 -->
-  <div class="ref-slot hidden" id="refSlot2">
-    <div class="ref-top">
-      <img id="refImg2" class="ref-thumb hidden" alt="รูปที่ 2">
-      <div id="refEmpty2" class="ref-thumb">รูป 2</div>
-      <div style="flex:1;display:grid;gap:6px">
-        <div class="row" style="justify-content:space-between">
-          <b style="font-size:12px;color:#8bd8ff">รูปที่ 2</b>
-          <div class="row">
-            <button type="button" onclick="document.getElementById('refFile2').click()">เลือกรูป 2</button>
-            <button type="button" onclick="clearRefSlot(2)">ล้าง</button>
-          </div>
-          <input id="refFile2" type="file" accept="image/*" hidden onchange="handleRefFile(2,event)">
-        </div>
-        <input id="refName2" class="ref-input" type="text" placeholder="ใส่ชื่อรูปที่ 2 (เช่น คู่กรณี / เพื่อน / สัตว์เลี้ยง)" oninput="updateRefField(2,'name',this.value)">
-      </div>
-    </div>
-    <div class="row">
-      <span class="label">เพศรูป 2</span>
-      <button type="button" class="pill active" data-rg2="ไม่ระบุ" onclick="setRefGender(2,'ไม่ระบุ')">ไม่ระบุ</button>
-      <button type="button" class="pill" data-rg2="ผู้หญิง" onclick="setRefGender(2,'ผู้หญิง')">ผู้หญิง</button>
-      <button type="button" class="pill" data-rg2="ผู้ชาย" onclick="setRefGender(2,'ผู้ชาย')">ผู้ชาย</button>
-    </div>
-    <input id="refTodo2" class="ref-todo" type="text" placeholder="ต้องการให้รูปที่ 2 ทำอะไร เช่น เดินเข้ามาขัดจังหวะ พูดโต้ตอบ..." oninput="updateRefField(2,'todo',this.value)">
+  <div class="home-actions">
+    <button type="button" class="home-big-btn btn-img-gold" onclick="showScreen('image')">
+      <span>🖼️</span>
+      <span>สร้างรูปภาพ</span>
+    </button>
+    <button type="button" class="home-big-btn btn-vid-teal" onclick="showScreen('video')">
+      <span>🎥</span>
+      <span>สร้างวิดีโอ</span>
+    </button>
   </div>
+</section>
 
-  <!-- ช่องแนบรูปที่ 3 -->
-  <div class="ref-slot hidden" id="refSlot3">
-    <div class="ref-top">
-      <img id="refImg3" class="ref-thumb hidden" alt="รูปที่ 3">
-      <div id="refEmpty3" class="ref-thumb">รูป 3</div>
-      <div style="flex:1;display:grid;gap:6px">
-        <div class="row" style="justify-content:space-between">
-          <b style="font-size:12px;color:#8ff0bd">รูปที่ 3</b>
-          <div class="row">
-            <button type="button" onclick="document.getElementById('refFile3').click()">เลือกรูป 3</button>
-            <button type="button" onclick="clearRefSlot(3)">ล้าง</button>
-          </div>
-          <input id="refFile3" type="file" accept="image/*" hidden onchange="handleRefFile(3,event)">
-        </div>
-        <input id="refName3" class="ref-input" type="text" placeholder="ใส่ชื่อรูปที่ 3 (เช่น ตัวประกอบ / คนกลาง / ฉากเพิ่ม)" oninput="updateRefField(3,'name',this.value)">
-      </div>
-    </div>
-    <div class="row">
-      <span class="label">เพศรูป 3</span>
-      <button type="button" class="pill active" data-rg3="ไม่ระบุ" onclick="setRefGender(3,'ไม่ระบุ')">ไม่ระบุ</button>
-      <button type="button" class="pill" data-rg3="ผู้หญิง" onclick="setRefGender(3,'ผู้หญิง')">ผู้หญิง</button>
-      <button type="button" class="pill" data-rg3="ผู้ชาย" onclick="setRefGender(3,'ผู้ชาย')">ผู้ชาย</button>
-    </div>
-    <input id="refTodo3" class="ref-todo" type="text" placeholder="ต้องการให้รูปที่ 3 ทำอะไร เช่น ยืนสังเกตการณ์ พยักหน้า..." oninput="updateRefField(3,'todo',this.value)">
-  </div>
-
-  <div class="row">
-    <span class="label">เพศหลัก</span>
-    <button type="button" class="pill active" data-gender="ไม่ระบุ" onclick="setGender('ไม่ระบุ')">ไม่ระบุ</button>
-    <button type="button" class="pill" data-gender="ผู้หญิง" onclick="setGender('ผู้หญิง')">ผู้หญิง</button>
-    <button type="button" class="pill" data-gender="ผู้ชาย" onclick="setGender('ผู้ชาย')">ผู้ชาย</button>
-  </div>
-  <div class="row">
-    <span class="label">อายุ</span>
-    <input id="charAge" class="age-input" type="number" min="1" max="120" placeholder="เช่น 25" oninput="setAge(this.value)">
-    <span class="muted" style="font-size:12px">ปี</span>
-    <button type="button" class="pill" onclick="randomAge()">🎲 สุ่มอายุ</button>
-    <button type="button" class="pill" onclick="clearAge()">ล้างอายุ</button>
-  </div>
-  <div class="row">
-    <span class="label">สัญชาติ</span>
-    <button type="button" class="pill active" data-nat="ไม่ระบุ" onclick="setNationality('ไม่ระบุ')">ไม่ระบุ</button>
-    <button type="button" class="pill" data-nat="ไทย" onclick="setNationality('ไทย')">ไทย</button>
-    <button type="button" class="pill" data-nat="ฝรั่ง" onclick="setNationality('ฝรั่ง')">ฝรั่ง</button>
-    <button type="button" class="pill" data-nat="จีน" onclick="setNationality('จีน')">จีน</button>
-    <button type="button" class="pill" data-nat="ญี่ปุ่น" onclick="setNationality('ญี่ปุ่น')">ญี่ปุ่น</button>
-    <button type="button" class="pill" data-nat="พม่า" onclick="setNationality('พม่า')">พม่า</button>
-    <button type="button" class="pill" data-nat="ลาว" onclick="setNationality('ลาว')">ลาว</button>
-  </div>
-  <div class="row">
-    <span class="label">สีผิว</span>
-    <button type="button" class="pill active" data-skin="ไม่ระบุ" onclick="setSkin('ไม่ระบุ')">ไม่ระบุ</button>
-    <button type="button" class="pill" data-skin="ดำแดง" onclick="setSkin('ดำแดง')">ดำแดง</button>
-    <button type="button" class="pill" data-skin="ดำมาก" onclick="setSkin('ดำมาก')">ดำมาก</button>
-    <button type="button" class="pill" data-skin="คล้ำ" onclick="setSkin('คล้ำ')">คล้ำ</button>
-    <button type="button" class="pill" data-skin="ขาว" onclick="setSkin('ขาว')">ขาว</button>
-    <button type="button" class="pill" data-skin="ซีดจาง" onclick="setSkin('ซีดจาง')">ซีดจาง</button>
-  </div>
-  <div class="row">
-    <button type="button" class="pill char-role-chip" data-role="พระเอก/ท่านประธานผู้สุขุม">ท่านประธาน</button>
-    <button type="button" class="pill char-role-chip" data-role="นางเอกนักสู้ผู้มุ่งมั่น">นางเอกนักสู้</button>
-    <button type="button" class="pill char-role-chip" data-role="ผู้เล่าเรื่อง/เพื่อนสนิทคอยให้คำปรึกษา">ผู้เล่าเรื่อง</button>
-    <button type="button" class="pill char-role-chip" data-role="ตัวละครน่ารักทำกิจกรรมในชีวิตประจำวัน">สายน่ารัก</button>
-  </div>
-  <textarea id="charRolePrompt" placeholder="พิมพ์บทบาทหรือคาแรกเตอร์รวมที่ต้องการให้ตัวละครแสดง เช่น แต่งตัวเรียบหรู ท่าทางมั่นใจ พูดจาชัดเจน..."></textarea>
-  <div class="img-prompt-box">
+<!-- 2. หน้าสร้างคำสั่งรูปภาพ (เมื่อกด "สร้างรูปภาพ") -->
+<main id="imageScreen" class="studio-wrap hidden">
+  <section class="panel section">
     <div class="row" style="justify-content:space-between">
-      <b style="font-size:12px;color:#9de3ff">🎨 Prompt สร้างรูปตัวละครพร้อมคำสั่ง (นำไปวางเจนภาพ/คลิป)</b>
-      <button type="button" onclick="rebuildCharPrompt()">รีเฟรชคำสั่งภาพ</button>
+      <h2 style="margin:0">🖼️ สร้างคำสั่งรูปภาพ (Image Prompt Builder)</h2>
+      <button type="button" onclick="showScreen('home')">🏠 กลับหน้าแรก</button>
     </div>
-    <textarea id="charImgPromptOut" readonly></textarea>
+    <p class="summary" style="margin:0">ตั้งค่าสไตล์ภาพ มุมกล้อง แสง และตัวละคร/รูปอ้างอิง เพื่อสร้าง <b>คำสั่งรูปภาพ (Prompt)</b> พร้อมนำไปวางสร้างภาพใน AI ที่ใช้งาน</p>
+
     <div class="row">
-      <button type="button" onclick="copyCharImagePrompt()">📋 คัดลอก Prompt ภาพ (EN)</button>
-      <button type="button" onclick="copyCharThaiSpec()">📋 คัดลอกคำสั่งตัวละคร (TH)</button>
+      <span class="label">สไตล์ภาพ</span>
+      <button type="button" class="pill active" data-istyle="สมจริงภาพยนตร์ (Cinematic Photo)" onclick="setImgStyle(this.dataset.istyle)">สมจริงภาพยนตร์</button>
+      <button type="button" class="pill" data-istyle="อนิเมะ/การ์ตูน (Anime 3D)" onclick="setImgStyle(this.dataset.istyle)">อนิเมะ / 3D</button>
+      <button type="button" class="pill" data-istyle="วิถีอีสาน/บ้านสวน (Isan Rural)" onclick="setImgStyle(this.dataset.istyle)">วิถีอีสาน / บ้านสวน</button>
+      <button type="button" class="pill" data-istyle="แฟชั่น/พอร์ตเทรต (Portrait)" onclick="setImgStyle(this.dataset.istyle)">พอร์ตเทรต / หล่อสวย</button>
     </div>
-  </div>
-</div>
-<button class="primary" onclick="createSeries()">✨ สร้างแผนเรื่องและบท</button>
-</section>
-<section class="panel section">
-<h2>ตัวอย่างสำเร็จรูป</h2>
-<button class="pill preset" onclick="loadPresident()">💎 ตัวอย่างละครแนวตั้ง: ท่านประธาน</button>
-<button class="pill" onclick="loadQuick('พ่อคนที่สอง')">เรื่อง: พ่อคนที่สอง</button>
-<button class="pill" onclick="loadQuick('ปมมรดกบ้านริมน้ำ')">ปมมรดกบ้านริมน้ำ</button>
-<button class="pill" onclick="loadQuick('คาเฟ่ลับกลางดึก')">คาเฟ่ลับกลางดึก</button>
-<div class="row"><button onclick="document.getElementById('file').click()">📥 นำเข้า JSON/TXT</button><input id="file" type="file" accept=".json,.txt" hidden onchange="importFile(event)"></div>
-</section>
-<section class="panel">
-<div class="notice">⚠️ <b>คำเตือนก่อนใช้หารายได้:</b> เนื้อหาและคำสั่งสร้างโดยพยายามหลีกเลี่ยงสิ่งที่แพลตฟอร์มอาจจำกัดรายได้ แต่ไม่สามารถรับประกันผลการตรวจสอบหรือการสร้างรายได้ได้</div>
-</section>
-<section class="panel section hidden" id="workspace">
-<h2 id="seriesTitle">ซีรีส์</h2><p id="synopsis" class="summary"></p><div class="row" id="tags"></div>
-<div class="episode-tabs" id="episodetabs"></div>
-<div id="shots" class="section"></div>
-<div class="exportrow"><button onclick="copyEpisode()">📋 คัดลอกช็อตตอนนี้</button><button onclick="copyAll()">📋 คัดลอกทุกตอน</button><button onclick="downloadTxt()">⬇️ ดาวน์โหลด TXT</button><button onclick="downloadJson()">⬇️ ดาวน์โหลด JSON</button></div>
-</section>
-<section class="panel section">
-<h2>📝 Model & Workflow Comparison</h2>
-<div class="two">
-<div class="card"><h3 style="color:#ffc966">Google Flow</h3><p>เหมาะกับการสร้างคลิปแบบภาพอ้างอิงและควบคุมฉาก แต่ควรตรวจเครดิต เวลา และเงื่อนไขการใช้งาน</p></div>
-<div class="card"><h3 style="color:#ff8dbb">Meta AI</h3><p>เหมาะกับการทดลองสร้างคลิปสั้นและคอนเทนต์โซเชียล ความสามารถและข้อจำกัดขึ้นกับบัญชีและพื้นที่</p></div>
-<div class="card"><h3 style="color:#8bd8ff">Manus AI</h3><p>ผู้ช่วยงานหลายขั้นตอน ใช้ช่วยวางแผนและจัดการงาน ไม่ใช่เครื่องสร้างวิดีโอโดยตรงในทุกเวิร์กโฟลว์</p></div>
-<div class="card"><h3 style="color:#8ff0bd">ระบบ API</h3><p>วางระบบเชื่อมบริการภาพ/วิดีโอ เช่น Flux หรือ Veo ตาม API ที่เปิดให้ใช้งานจริง ต้องตรวจชื่อโมเดลและราคา ณ วันที่เชื่อมต่อ</p></div>
-</div>
-<div class="row"><button onclick="workflowPreset('meta')">ใช้แนวทาง Meta</button><button onclick="workflowPreset('flow')">ใช้แนวทาง Flow</button><button onclick="copyWorkflow()">คัดลอกโน้ต</button></div>
-</section>
+
+    <div class="row">
+      <span class="label">มุมกล้อง</span>
+      <button type="button" class="pill active" data-icam="ระยะกลางเห็นท่าทาง (Medium Shot)" onclick="setImgCam(this.dataset.icam)">ระยะกลาง</button>
+      <button type="button" class="pill" data-icam="โคลสอัปใบหน้า (Close-up Portrait)" onclick="setImgCam(this.dataset.icam)">โคลสอัปหน้า</button>
+      <button type="button" class="pill" data-icam="เต็มตัวเห็นฉาก (Wide Full-body Shot)" onclick="setImgCam(this.dataset.icam)">เต็มตัวเห็นฉาก</button>
+    </div>
+
+    <div class="row">
+      <span class="label">แสงและบรรยากาศ</span>
+      <button type="button" class="pill active" data-ilight="แสงยามเช้าอบอุ่น (Warm Golden Morning Light)" onclick="setImgLight(this.dataset.ilight)">แสงเช้าอบอุ่น</button>
+      <button type="button" class="pill" data-ilight="แสงสตูดิโอคมชัด (Studio Rim Lighting)" onclick="setImgLight(this.dataset.ilight)">แสงสตูดิโอ</button>
+      <button type="button" class="pill" data-ilight="บรรยากาศลึกลับยามค่ำ (Moody Night Neon)" onclick="setImgLight(this.dataset.ilight)">ยามค่ำ/ลึกลับ</button>
+    </div>
+
+    <input id="imgSubjectInput" class="text-box" type="text" placeholder="พิมพ์รายละเอียดภาพ/ฉากที่ต้องการ เช่น ยืนอยู่หน้าบ้านสวนไม้สัก มีกาแฟและหมอกบางๆ ยามเช้า..." oninput="buildImageStudioPrompt()">
+
+    <div class="img-prompt-box">
+      <b style="font-size:13px;color:#ffd67a">คำสั่งรูปภาพภาษาไทย (TH)</b>
+      <textarea id="imgPromptThOut" class="img-studio-area" readonly></textarea>
+      <b style="font-size:13px;color:#9de3ff">คำสั่งรูปภาพภาษาอังกฤษ (EN Prompt)</b>
+      <textarea id="imgPromptEnOut" class="img-studio-area" readonly></textarea>
+      <div class="row">
+        <button type="button" onclick="copy(document.getElementById('imgPromptEnOut').value)">📋 คัดลอกคำสั่งภาพ (EN)</button>
+        <button type="button" onclick="copy(document.getElementById('imgPromptThOut').value)">📋 คัดลอกคำสั่งภาพ (TH)</button>
+        <button type="button" onclick="showScreen('video')">🎥 ส่งไปหน้าสร้างวิดีโอ</button>
+      </div>
+    </div>
+  </section>
 </main>
-<div class="sticky-bottom"><button onclick="createSeries()">✨ สร้างเรื่อง</button><button onclick="copyAll()">📋 คัดลอก</button><button onclick="downloadTxt()">⬇️ ส่งออก</button></div>
+
+<!-- 3. หน้าสร้างวิดีโอ AI Clip Studio (เมื่อกด "สร้างวิดีโอ") -->
+<main id="videoScreen" class="studio-wrap hidden">
+  <section class="panel section">
+    <div class="row" style="justify-content:space-between">
+      <div>
+        <h2 style="margin:0">🎬 AI Clip Studio</h2>
+        <small class="muted">Mobile Studio • Story • Prompt • Export</small>
+      </div>
+      <button type="button" onclick="showScreen('home')">🏠 กลับหน้าแรก</button>
+    </div>
+
+    <h2>ตั้งค่าการสร้างเรื่อง</h2>
+    <div class="row"><span class="label">หมวด</span><button class="pill active" data-cat="moral" onclick="setCat('moral')">🎭 ละครคุณธรรม</button><button class="pill" data-cat="vertical" onclick="setCat('vertical')">💎 ละครแนวตั้ง หล่อสวย</button><button class="pill" data-cat="rural" onclick="setCat('rural')">🌾 วิถีชีวิตพอเพียง / ชนบท</button><button class="pill" data-cat="garden" onclick="setCat('garden')">🏡 บ้านสวน / แต่งบ้าน</button><button class="pill" data-cat="dhamma" onclick="setCat('dhamma')">🙏 ธรรมะ / ข้อคิด</button><button class="pill" data-cat="cooking" onclick="setCat('cooking')">🍳 ทำอาหาร / เมนูฮิต</button><button class="pill" data-cat="pets" onclick="setCat('pets')">🐱 สัตว์น่ารัก / แมวทำกิจกรรม</button><button class="pill" data-cat="ghost" onclick="setCat('ghost')">👻 ผีไทย / ลี้ลับ / เทศกาล</button><button class="pill" data-cat="comedy" onclick="setCat('comedy')">😂 ตลก / คอนเทนต์เทศกาลฮาๆ</button></div>
+    <div class="row"><span class="label">หมวดย่อย</span><button class="pill active" data-sub="all" onclick="setSub('all')">ทุกแนว</button><button class="pill" data-sub="modern" onclick="setSub('modern')">สมัยใหม่</button><button class="pill" data-sub="ancient" onclick="setSub('ancient')">จีนโบราณ</button><button class="pill" data-sub="fantasy" onclick="setSub('fantasy')">แฟนตาซี</button></div>
+    <div class="row"><span class="label">ทำคลิปใน</span><button class="pill active" id="flow" onclick="setPlatform('flow')">🎬 Google Flow</button><button class="pill" id="meta" onclick="setPlatform('meta')">♾️ Meta AI</button></div>
+    <div class="row"><span class="label">ความยาว</span><button class="pill active" data-dur="30" onclick="setDuration(30)">30 วิ</button><button class="pill" data-dur="60" onclick="setDuration(60)">1 นาที</button><button class="pill" data-dur="90" onclick="setDuration(90)">1 นาทีครึ่ง</button></div>
+    <div class="row"><span class="label">รูปแบบ</span><button class="pill active" id="single" onclick="setFormat('single')">จบในตอนเดียว</button><button class="pill" id="series" onclick="setFormat('series')">ซีรีส์ต่อเนื่อง</button></div>
+    <div class="row" id="langBox"><span class="label">บทพูด</span><label class="lang-check active" id="lbl-th"><input type="checkbox" value="th" checked onchange="toggleLang()"> 🇹🇭 ไทย</label><label class="lang-check" id="lbl-isan"><input type="checkbox" value="isan" onchange="toggleLang()"> 🌾 อีสาน</label><label class="lang-check" id="lbl-en"><input type="checkbox" value="en" onchange="toggleLang()"> 🇬🇧 อังกฤษ</label></div>
+    <div id="summary" class="summary"></div>
+
+    <div id="char-role-panel">
+      <b style="font-size:13px;color:#ffd67a">🖼️ รูปตัวละครอ้างอิง (สูงสุด 3 ภาพ) & คุณสมบัติตัวละคร</b>
+
+      <div class="row">
+        <span class="label">จำนวนแนบ</span>
+        <button type="button" class="pill active" data-refcount="1" onclick="setRefCountMode('1')">แนบ 1 รูป</button>
+        <button type="button" class="pill" data-refcount="3" onclick="setRefCountMode('3')">แนบ 2-3 รูป</button>
+        <label class="lang-check" id="lbl-more3"><input type="checkbox" id="moreThan3Check" onchange="toggleMoreThan3()"> มากกว่า 3 รูป / หลายตัวละคร</label>
+      </div>
+
+      <!-- ช่องแนบรูปที่ 1 -->
+      <div class="ref-slot" id="refSlot1">
+        <div class="ref-top">
+          <img id="refImg1" class="ref-thumb hidden" alt="รูปที่ 1">
+          <div id="refEmpty1" class="ref-thumb">รูป 1</div>
+          <div style="flex:1;display:grid;gap:6px">
+            <div class="row" style="justify-content:space-between">
+              <b style="font-size:12px;color:#ffd67a">รูปที่ 1</b>
+              <div class="row">
+                <button type="button" onclick="document.getElementById('refFile1').click()">เลือกรูป 1</button>
+                <button type="button" onclick="clearRefSlot(1)">ล้าง</button>
+              </div>
+              <input id="refFile1" type="file" accept="image/*" hidden onchange="handleRefFile(1,event)">
+            </div>
+            <input id="refName1" class="text-box" type="text" placeholder="ใส่ชื่อรูปที่ 1 (เช่น ตัวเอก / ท่านประธาน)" oninput="updateRefField(1,'name',this.value)">
+          </div>
+        </div>
+        <div class="row">
+          <span class="label">เพศรูป 1</span>
+          <button type="button" class="pill active" data-rg1="ไม่ระบุ" onclick="setRefGender(1,'ไม่ระบุ')">ไม่ระบุ</button>
+          <button type="button" class="pill" data-rg1="ผู้หญิง" onclick="setRefGender(1,'ผู้หญิง')">ผู้หญิง</button>
+          <button type="button" class="pill" data-rg1="ผู้ชาย" onclick="setRefGender(1,'ผู้ชาย')">ผู้ชาย</button>
+        </div>
+        <input id="refTodo1" class="text-box" type="text" placeholder="ต้องการให้รูปที่ 1 ทำอะไร เช่น หันมามองกล้อง สีหน้าจริงจัง ยื่นเอกสาร..." oninput="updateRefField(1,'todo',this.value)">
+      </div>
+
+      <!-- ช่องแนบรูปที่ 2 -->
+      <div class="ref-slot hidden" id="refSlot2">
+        <div class="ref-top">
+          <img id="refImg2" class="ref-thumb hidden" alt="รูปที่ 2">
+          <div id="refEmpty2" class="ref-thumb">รูป 2</div>
+          <div style="flex:1;display:grid;gap:6px">
+            <div class="row" style="justify-content:space-between">
+              <b style="font-size:12px;color:#8bd8ff">รูปที่ 2</b>
+              <div class="row">
+                <button type="button" onclick="document.getElementById('refFile2').click()">เลือกรูป 2</button>
+                <button type="button" onclick="clearRefSlot(2)">ล้าง</button>
+              </div>
+              <input id="refFile2" type="file" accept="image/*" hidden onchange="handleRefFile(2,event)">
+            </div>
+            <input id="refName2" class="text-box" type="text" placeholder="ใส่ชื่อรูปที่ 2 (เช่น คู่กรณี / เพื่อน / สัตว์เลี้ยง)" oninput="updateRefField(2,'name',this.value)">
+          </div>
+        </div>
+        <div class="row">
+          <span class="label">เพศรูป 2</span>
+          <button type="button" class="pill active" data-rg2="ไม่ระบุ" onclick="setRefGender(2,'ไม่ระบุ')">ไม่ระบุ</button>
+          <button type="button" class="pill" data-rg2="ผู้หญิง" onclick="setRefGender(2,'ผู้หญิง')">ผู้หญิง</button>
+          <button type="button" class="pill" data-rg2="ผู้ชาย" onclick="setRefGender(2,'ผู้ชาย')">ผู้ชาย</button>
+        </div>
+        <input id="refTodo2" class="text-box" type="text" placeholder="ต้องการให้รูปที่ 2 ทำอะไร เช่น เดินเข้ามาขัดจังหวะ พูดโต้ตอบ..." oninput="updateRefField(2,'todo',this.value)">
+      </div>
+
+      <!-- ช่องแนบรูปที่ 3 -->
+      <div class="ref-slot hidden" id="refSlot3">
+        <div class="ref-top">
+          <img id="refImg3" class="ref-thumb hidden" alt="รูปที่ 3">
+          <div id="refEmpty3" class="ref-thumb">รูป 3</div>
+          <div style="flex:1;display:grid;gap:6px">
+            <div class="row" style="justify-content:space-between">
+              <b style="font-size:12px;color:#8ff0bd">รูปที่ 3</b>
+              <div class="row">
+                <button type="button" onclick="document.getElementById('refFile3').click()">เลือกรูป 3</button>
+                <button type="button" onclick="clearRefSlot(3)">ล้าง</button>
+              </div>
+              <input id="refFile3" type="file" accept="image/*" hidden onchange="handleRefFile(3,event)">
+            </div>
+            <input id="refName3" class="text-box" type="text" placeholder="ใส่ชื่อรูปที่ 3 (เช่น ตัวประกอบ / คนกลาง / ฉากเพิ่ม)" oninput="updateRefField(3,'name',this.value)">
+          </div>
+        </div>
+        <div class="row">
+          <span class="label">เพศรูป 3</span>
+          <button type="button" class="pill active" data-rg3="ไม่ระบุ" onclick="setRefGender(3,'ไม่ระบุ')">ไม่ระบุ</button>
+          <button type="button" class="pill" data-rg3="ผู้หญิง" onclick="setRefGender(3,'ผู้หญิง')">ผู้หญิง</button>
+          <button type="button" class="pill" data-rg3="ผู้ชาย" onclick="setRefGender(3,'ผู้ชาย')">ผู้ชาย</button>
+        </div>
+        <input id="refTodo3" class="text-box" type="text" placeholder="ต้องการให้รูปที่ 3 ทำอะไร เช่น ยืนสังเกตการณ์ พยักหน้า..." oninput="updateRefField(3,'todo',this.value)">
+      </div>
+
+      <div class="row">
+        <span class="label">เพศหลัก</span>
+        <button type="button" class="pill active" data-gender="ไม่ระบุ" onclick="setGender('ไม่ระบุ')">ไม่ระบุ</button>
+        <button type="button" class="pill" data-gender="ผู้หญิง" onclick="setGender('ผู้หญิง')">ผู้หญิง</button>
+        <button type="button" class="pill" data-gender="ผู้ชาย" onclick="setGender('ผู้ชาย')">ผู้ชาย</button>
+      </div>
+      <div class="row">
+        <span class="label">อายุ</span>
+        <input id="charAge" class="age-input" type="number" min="1" max="120" placeholder="เช่น 25" oninput="setAge(this.value)">
+        <span class="muted" style="font-size:12px">ปี</span>
+        <button type="button" class="pill" onclick="randomAge()">🎲 สุ่มอายุ</button>
+        <button type="button" class="pill" onclick="clearAge()">ล้างอายุ</button>
+      </div>
+      <div class="row">
+        <span class="label">สัญชาติ</span>
+        <button type="button" class="pill active" data-nat="ไม่ระบุ" onclick="setNationality('ไม่ระบุ')">ไม่ระบุ</button>
+        <button type="button" class="pill" data-nat="ไทย" onclick="setNationality('ไทย')">ไทย</button>
+        <button type="button" class="pill" data-nat="ฝรั่ง" onclick="setNationality('ฝรั่ง')">ฝรั่ง</button>
+        <button type="button" class="pill" data-nat="จีน" onclick="setNationality('จีน')">จีน</button>
+        <button type="button" class="pill" data-nat="ญี่ปุ่น" onclick="setNationality('ญี่ปุ่น')">ญี่ปุ่น</button>
+        <button type="button" class="pill" data-nat="พม่า" onclick="setNationality('พม่า')">พม่า</button>
+        <button type="button" class="pill" data-nat="ลาว" onclick="setNationality('ลาว')">ลาว</button>
+      </div>
+      <div class="row">
+        <span class="label">สีผิว</span>
+        <button type="button" class="pill active" data-skin="ไม่ระบุ" onclick="setSkin('ไม่ระบุ')">ไม่ระบุ</button>
+        <button type="button" class="pill" data-skin="ดำแดง" onclick="setSkin('ดำแดง')">ดำแดง</button>
+        <button type="button" class="pill" data-skin="ดำมาก" onclick="setSkin('ดำมาก')">ดำมาก</button>
+        <button type="button" class="pill" data-skin="คล้ำ" onclick="setSkin('คล้ำ')">คล้ำ</button>
+        <button type="button" class="pill" data-skin="ขาว" onclick="setSkin('ขาว')">ขาว</button>
+        <button type="button" class="pill" data-skin="ซีดจาง" onclick="setSkin('ซีดจาง')">ซีดจาง</button>
+      </div>
+      <div class="row">
+        <button type="button" class="pill char-role-chip" data-role="พระเอก/ท่านประธานผู้สุขุม">ท่านประธาน</button>
+        <button type="button" class="pill char-role-chip" data-role="นางเอกนักสู้ผู้มุ่งมั่น">นางเอกนักสู้</button>
+        <button type="button" class="pill char-role-chip" data-role="ผู้เล่าเรื่อง/เพื่อนสนิทคอยให้คำปรึกษา">ผู้เล่าเรื่อง</button>
+        <button type="button" class="pill char-role-chip" data-role="ตัวละครน่ารักทำกิจกรรมในชีวิตประจำวัน">สายน่ารัก</button>
+      </div>
+      <textarea id="charRolePrompt" class="img-studio-area" placeholder="พิมพ์บทบาทหรือคาแรกเตอร์รวมที่ต้องการให้ตัวละครแสดง เช่น แต่งตัวเรียบหรู ท่าทางมั่นใจ พูดจาชัดเจน..."></textarea>
+      <div class="img-prompt-box">
+        <div class="row" style="justify-content:space-between">
+          <b style="font-size:12px;color:#9de3ff">🎨 Prompt สร้างรูปตัวละครพร้อมคำสั่ง (นำไปวางเจนภาพ/คลิป)</b>
+          <button type="button" onclick="rebuildCharPrompt()">รีเฟรชคำสั่งภาพ</button>
+        </div>
+        <textarea id="charImgPromptOut" class="img-studio-area" readonly></textarea>
+        <div class="row">
+          <button type="button" onclick="copyCharImagePrompt()">📋 คัดลอก Prompt ภาพ (EN)</button>
+          <button type="button" onclick="copyCharThaiSpec()">📋 คัดลอกคำสั่งตัวละคร (TH)</button>
+        </div>
+      </div>
+    </div>
+    <button class="primary" onclick="createSeries()">✨ สร้างแผนเรื่องและบท</button>
+  </section>
+
+  <section class="panel section">
+    <h2>ตัวอย่างสำเร็จรูป</h2>
+    <button class="pill preset" onclick="loadPresident()">💎 ตัวอย่างละครแนวตั้ง: ท่านประธาน</button>
+    <button class="pill" onclick="loadQuick('พ่อคนที่สอง')">เรื่อง: พ่อคนที่สอง</button>
+    <button class="pill" onclick="loadQuick('ปมมรดกบ้านริมน้ำ')">ปมมรดกบ้านริมน้ำ</button>
+    <button class="pill" onclick="loadQuick('คาเฟ่ลับกลางดึก')">คาเฟ่ลับกลางดึก</button>
+    <div class="row"><button onclick="document.getElementById('file').click()">📥 นำเข้า JSON/TXT</button><input id="file" type="file" accept=".json,.txt" hidden onchange="importFile(event)"></div>
+  </section>
+
+  <section class="panel">
+    <div class="notice">⚠️ <b>คำเตือนก่อนใช้หารายได้:</b> เนื้อหาและคำสั่งสร้างโดยพยายามหลีกเลี่ยงสิ่งที่แพลตฟอร์มอาจจำกัดรายได้ แต่ไม่สามารถรับประกันผลการตรวจสอบหรือการสร้างรายได้ได้</div>
+  </section>
+
+  <section class="panel section hidden" id="workspace">
+    <h2 id="seriesTitle">ซีรีส์</h2><p id="synopsis" class="summary"></p><div class="row" id="tags"></div>
+    <div class="episode-tabs" id="episodetabs"></div>
+    <div id="shots" class="section"></div>
+    <div class="exportrow"><button onclick="copyEpisode()">📋 คัดลอกช็อตตอนนี้</button><button onclick="copyAll()">📋 คัดลอกทุกตอน</button><button onclick="downloadTxt()">⬇️ ดาวน์โหลด TXT</button><button onclick="downloadJson()">⬇️ ดาวน์โหลด JSON</button></div>
+  </section>
+
+  <section class="panel section">
+    <h2>📝 Model & Workflow Comparison</h2>
+    <div class="two">
+      <div class="card"><h3 style="color:#ffc966">Google Flow</h3><p>เหมาะกับการสร้างคลิปแบบภาพอ้างอิงและควบคุมฉาก แต่ควรตรวจเครดิต เวลา และเงื่อนไขการใช้งาน</p></div>
+      <div class="card"><h3 style="color:#ff8dbb">Meta AI</h3><p>เหมาะกับการทดลองสร้างคลิปสั้นและคอนเทนต์โซเชียล ความสามารถและข้อจำกัดขึ้นกับบัญชีและพื้นที่</p></div>
+      <div class="card"><h3 style="color:#8bd8ff">Manus AI</h3><p>ผู้ช่วยงานหลายขั้นตอน ใช้ช่วยวางแผนและจัดการงาน ไม่ใช่เครื่องสร้างวิดีโอโดยตรงในทุกเวิร์กโฟลว์</p></div>
+      <div class="card"><h3 style="color:#8ff0bd">ระบบ API</h3><p>วางระบบเชื่อมบริการภาพ/วิดีโอ เช่น Flux หรือ Veo ตาม API ที่เปิดให้ใช้งานจริง ต้องตรวจชื่อโมเดลและราคา ณ วันที่เชื่อมต่อ</p></div>
+    </div>
+    <div class="row"><button onclick="workflowPreset('meta')">ใช้แนวทาง Meta</button><button onclick="workflowPreset('flow')">ใช้แนวทาง Flow</button><button onclick="copyWorkflow()">คัดลอกโน้ต</button></div>
+  </section>
+</main>
+
+<div class="sticky-bottom">
+  <button onclick="showScreen('home')">🏠 หน้าแรก</button>
+  <button onclick="showScreen('image')">🖼️ รูปภาพ</button>
+  <button onclick="showScreen('video')">🎥 วิดีโอ</button>
+</div>
+
 <script>
-let state={cat:'moral',sub:'all',platform:'flow',duration:60,format:'single',langs:['th'],gender:'ไม่ระบุ',age:'',nationality:'ไม่ระบุ',skin:'ไม่ระบุ',refMode:'1',moreThan3:false,series:null,ep:1};
+let state={screen:'home',imgStyle:'สมจริงภาพยนตร์ (Cinematic Photo)',imgCam:'ระยะกลางเห็นท่าทาง (Medium Shot)',imgLight:'แสงยามเช้าอบอุ่น (Warm Golden Morning Light)',cat:'moral',sub:'all',platform:'flow',duration:60,format:'single',langs:['th'],gender:'ไม่ระบุ',age:'',nationality:'ไม่ระบุ',skin:'ไม่ระบุ',refMode:'1',moreThan3:false,series:null,ep:1};
 let refs=[
   {slot:1,fileName:'',dataUrl:'',name:'',gender:'ไม่ระบุ',todo:''},
   {slot:2,fileName:'',dataUrl:'',name:'',gender:'ไม่ระบุ',todo:''},
@@ -221,18 +381,56 @@ const mapGenderEn={'ผู้หญิง':'female character','ผู้ชา�
 const mapNatEn={'ไทย':'Thai','ฝรั่ง':'Western Caucasian','จีน':'Chinese','ญี่ปุ่น':'Japanese','พม่า':'Burmese','ลาว':'Lao','ไม่ระบุ':''};
 const mapSkinEn={'ดำแดง':'deep reddish-brown skin','ดำมาก':'very dark skin','คล้ำ':'tanned dark skin','ขาว':'fair skin','ซีดจาง':'pale skin','ไม่ระบุ':''};
 const mapSubStyleEn={'all':'cinematic storytelling','modern':'modern contemporary setting','ancient':'ancient Chinese historical aesthetic','fantasy':'fantasy cinematic world'};
+
+function showScreen(scr){
+  state.screen=scr;
+  document.getElementById('homeScreen').classList.toggle('hidden',scr!=='home');
+  document.getElementById('imageScreen').classList.toggle('hidden',scr!=='image');
+  document.getElementById('videoScreen').classList.toggle('hidden',scr!=='video');
+  document.getElementById('navHome').classList.toggle('active',scr==='home');
+  document.getElementById('navImage').classList.toggle('active',scr==='image');
+  document.getElementById('navVideo').classList.toggle('active',scr==='video');
+  if(scr==='home'){
+    document.getElementById('topTitle').textContent='BAO SAKON AI';
+    document.getElementById('topSub').textContent='บ่าวสกล AI • หน้าแรก 2 ระบบ';
+  }else if(scr==='image'){
+    document.getElementById('topTitle').textContent='สร้างรูปภาพ • BAO SAKON AI';
+    document.getElementById('topSub').textContent='ตัวช่วยแต่งคำสั่งรูปภาพ (Image Prompt)';
+    buildImageStudioPrompt();
+  }else{
+    document.getElementById('topTitle').textContent='AI Clip Studio';
+    document.getElementById('topSub').textContent='Mobile Studio • Story • Prompt • Export';
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setImgStyle(v){state.imgStyle=v;document.querySelectorAll('[data-istyle]').forEach(b=>b.classList.toggle('active',b.dataset.istyle===v));buildImageStudioPrompt()}
+function setImgCam(v){state.imgCam=v;document.querySelectorAll('[data-icam]').forEach(b=>b.classList.toggle('active',b.dataset.icam===v));buildImageStudioPrompt()}
+function setImgLight(v){state.imgLight=v;document.querySelectorAll('[data-ilight]').forEach(b=>b.classList.toggle('active',b.dataset.ilight===v));buildImageStudioPrompt()}
+function buildImageStudioPrompt(){
+  let subj=(document.getElementById('imgSubjectInput')?.value||'').trim()||'ตัวละครหลักในฉากที่ชัดเจน';
+  let spec=charSpecText();
+  let rSum=refSummaryText();
+  let thOut=`สไตล์: ${state.imgStyle}\nมุมกล้อง: ${state.imgCam}\nแสง/บรรยากาศ: ${state.imgLight}\nรายละเอียดฉาก: ${subj}`+(spec?`\nคุณสมบัติตัวละคร: ${spec}`:'')+(rSum?`\nรูปอ้างอิง: ${rSum}`:'');
+  let enOut=`${subj}, ${state.imgStyle}, ${state.imgCam}, ${state.imgLight}, ${buildImagePromptEn()}`;
+  let elTh=document.getElementById('imgPromptThOut');
+  let elEn=document.getElementById('imgPromptEnOut');
+  if(elTh)elTh.value=thOut;
+  if(elEn)elEn.value=enOut;
+}
+
 function unit(){return state.platform==='meta'?10:8}
 function setCat(v){state.cat=v;document.querySelectorAll('[data-cat]').forEach(b=>b.classList.toggle('active',b.dataset.cat===v));updateSummary();rebuildCharPrompt()}
 function setSub(v){state.sub=v;document.querySelectorAll('[data-sub]').forEach(b=>b.classList.toggle('active',b.dataset.sub===v));updateSummary();rebuildCharPrompt()}
 function setPlatform(v){state.platform=v;document.getElementById('flow').classList.toggle('active',v==='flow');document.getElementById('meta').classList.toggle('active',v==='meta');updateSummary()}
 function setDuration(v){state.duration=v;document.querySelectorAll('[data-dur]').forEach(b=>b.classList.toggle('active',+b.dataset.dur===v));updateSummary()}
 function setFormat(v){state.format=v;document.getElementById('single').classList.toggle('active',v==='single');document.getElementById('series').classList.toggle('active',v==='series');updateSummary()}
-function setGender(v){state.gender=v;document.querySelectorAll('[data-gender]').forEach(b=>b.classList.toggle('active',b.dataset.gender===v));updateSummary();rebuildCharPrompt();if(state.series)render()}
-function setAge(v){let n=String(v||'').replace(/[^\d]/g,'');if(n!==''&&+n>120)n='120';state.age=n;let inp=document.getElementById('charAge');if(inp&&inp.value!==n)inp.value=n;updateSummary();rebuildCharPrompt();if(state.series)render()}
+function setGender(v){state.gender=v;document.querySelectorAll('[data-gender]').forEach(b=>b.classList.toggle('active',b.dataset.gender===v));updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render()}
+function setAge(v){let n=String(v||'').replace(/[^\d]/g,'');if(n!==''&&+n>120)n='120';state.age=n;let inp=document.getElementById('charAge');if(inp&&inp.value!==n)inp.value=n;updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render()}
 function randomAge(){let r=Math.floor(Math.random()*63)+18;setAge(r)}
 function clearAge(){setAge('')}
-function setNationality(v){state.nationality=v;document.querySelectorAll('[data-nat]').forEach(b=>b.classList.toggle('active',b.dataset.nat===v));updateSummary();rebuildCharPrompt();if(state.series)render()}
-function setSkin(v){state.skin=v;document.querySelectorAll('[data-skin]').forEach(b=>b.classList.toggle('active',b.dataset.skin===v));updateSummary();rebuildCharPrompt();if(state.series)render()}
+function setNationality(v){state.nationality=v;document.querySelectorAll('[data-nat]').forEach(b=>b.classList.toggle('active',b.dataset.nat===v));updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render()}
+function setSkin(v){state.skin=v;document.querySelectorAll('[data-skin]').forEach(b=>b.classList.toggle('active',b.dataset.skin===v));updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render()}
 function toggleLang(){let boxes=[...document.querySelectorAll('#langBox input[type="checkbox"]')];let picked=boxes.filter(x=>x.checked).map(x=>x.value);if(!picked.length){boxes[0].checked=true;picked=['th'];}state.langs=picked;boxes.forEach(x=>x.closest('label').classList.toggle('active',x.checked));updateSummary();if(state.series)render();}
 function setRefCountMode(m){
   state.refMode=m;
@@ -240,13 +438,13 @@ function setRefCountMode(m){
   let show3=(m==='3');
   document.getElementById('refSlot2').classList.toggle('hidden',!show3);
   document.getElementById('refSlot3').classList.toggle('hidden',!show3);
-  updateSummary();rebuildCharPrompt();if(state.series)render();
+  updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render();
 }
 function toggleMoreThan3(){
   let cb=document.getElementById('moreThan3Check');
   state.moreThan3=Boolean(cb&&cb.checked);
   document.getElementById('lbl-more3').classList.toggle('active',state.moreThan3);
-  updateSummary();rebuildCharPrompt();if(state.series)render();
+  updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render();
 }
 function handleRefFile(slot,ev){
   let f=ev.target.files&&ev.target.files[0];
@@ -266,7 +464,7 @@ function handleRefFile(slot,ev){
       nameInp.value=baseName;
       item.name=baseName;
     }
-    updateSummary();rebuildCharPrompt();if(state.series)render();
+    updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render();
   };
   rd.readAsDataURL(f);
 }
@@ -283,11 +481,11 @@ function clearRefSlot(slot){
 function setRefGender(slot,g){
   refs[slot-1].gender=g;
   document.querySelectorAll('[data-rg'+slot+']').forEach(b=>b.classList.toggle('active',b.dataset['rg'+slot]===g));
-  updateSummary();rebuildCharPrompt();if(state.series)render();
+  updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render();
 }
 function updateRefField(slot,field,val){
   refs[slot-1][field]=val;
-  updateSummary();rebuildCharPrompt();if(state.series)render();
+  updateSummary();rebuildCharPrompt();buildImageStudioPrompt();if(state.series)render();
 }
 function activeRefs(){
   let maxSlot=state.refMode==='3'?3:1;
@@ -352,27 +550,16 @@ function buildImagePromptEn(){
   let actionEn=roleText?('Overall role & acting: '+roleText+', '):'';
   return `${moreEn}${refEn}${ageEn}${natEn}${gEn}, ${skinEn}${actionEn}cinematic composition, ${subEn}, sharp focus, consistent character design, high detail`;
 }
-function rebuildCharPrompt(){
-  let out=document.getElementById('charImgPromptOut');
-  if(out)out.value=buildImagePromptEn();
-}
-function copyCharImagePrompt(){
-  rebuildCharPrompt();
-  let out=document.getElementById('charImgPromptOut');
-  if(out)copy(out.value);
-}
-function copyCharThaiSpec(){
-  let cb=charBlock();
-  let imgEn=buildImagePromptEn();
-  copy((cb||'[ยังไม่ได้เลือกคุณสมบัติตัวละคร]')+'\n[Prompt สร้างภาพตัวละคร]: '+imgEn);
-}
+function rebuildCharPrompt(){let out=document.getElementById('charImgPromptOut');if(out)out.value=buildImagePromptEn()}
+function copyCharImagePrompt(){rebuildCharPrompt();let out=document.getElementById('charImgPromptOut');if(out)copy(out.value)}
+function copyCharThaiSpec(){let cb=charBlock();let imgEn=buildImagePromptEn();copy((cb||'[ยังไม่ได้เลือกคุณสมบัติตัวละคร]')+'\n[Prompt สร้างภาพตัวละคร]: '+imgEn)}
 function updateSummary(){let count=state.duration===30?4:state.duration===60?6:8;let sec=count*unit();let time=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');let spec=charSpecText();let rSum=refSummaryText();document.getElementById('summary').innerHTML=`<b style="color:#ffd66e">สรุป:</b> ${labelCat[state.cat]||labelCat.moral} • ${labelSub[state.sub]} • บทพูด: ${langText()} • ${state.platform==='meta'?'Meta AI':'Google Flow'} • ${count} ช็อต × ${unit()} วิ ≈ ${time} นาที/ตอน • ${state.format==='series'?'ซีรีส์':'จบในตอนเดียว'}`+(spec?`<br><b style="color:#8ff0bd">ตัวละคร:</b> ${spec}`:'')+`<br><b style="color:#8bd8ff">รูปอ้างอิง:</b> ${rSum}`;}
 function loadPresident(){state.cat='vertical';state.sub='modern';state.format='series';setCat('vertical');setSub('modern');setFormat('series');state.series=presidentData();render();document.getElementById('workspace').scrollIntoView({behavior:'smooth'});}
 function presidentData(){return {title:'ประธานหมื่นล้านคือสามีฉัน',synopsis:'เฉินหว่านชิง ดีไซเนอร์จิวเวลรี่สาวถูกคู่หมั้นทิ้งในวันจดทะเบียน เธอตัดสินใจแต่งงานสายฟ้าแลบกับชายแปลกหน้าโดยไม่รู้ว่าเขาคือประธานบริษัทจิวเวลรี่ที่เธอกำลังจะเข้าทำงาน',cast:[{name:'เฉินหว่านชิง',desc:'ดีไซเนอร์จิวเวลรี่สาววัย 26 ปี รูปร่างเล็กบอบบาง หน้าสวยเฉี่ยว ผมประบ่า แต่งตัวหรูเรียบ'},{name:'เวินฉวีกง',desc:'ประธานบริษัทวัย 28 ปี สูงโปร่ง หน้าคมเข้ม สวมสูทดำเรียบหรู'},{name:'เฉินหว่านหรู',desc:'พี่สาวต่างแม่ วัย 27 ปี ท่าทางเชิดหยิ่ง แต่งตัวหรู'}],episodes:[
-{title:'วันแต่งงานที่ไม่มีเจ้าบ่าว',shots:[['ห้องจดทะเบียนสมรส','เฉินหว่านหรูเดินเข้ามาอย่างเย้ยหยัน เฉินหว่านชิงถือแฟ้มเอกสารและพยายามตั้งสติ','คู่หมั้นของเธอเปลี่ยนใจแล้ว เขาเลือกฉัน'],['ห้องจดทะเบียนสมรส','เฉินหว่านชิงมองเอกสารในมือ ก่อนเงยหน้าขึ้นอย่างเด็ดเดี่ยว','ฉันไม่เสียเวลารอคนที่ไม่เห็นค่าฉัน'],['ห้องจดทะเบียนสมรส','เวินฉวีกงยื่นปากกาให้เธออย่างสุภาพ','ถ้าคุณต้องการ เราจดทะเบียนด้วยกันได้'],['ห้องจดทะเบียนสมรส','ทั้งสองสบตากันอย่างลังเล เจ้าหน้าที่รออยู่ตรงหน้า','คุณแน่ใจหรือคะว่าเราควรทำแบบนี้'] ]},
-{title:'การพบกันในบริษัท',shots:[['โถงบริษัทจิวเวลรี่','เฉินหว่านชิงเดินเข้าบริษัทพร้อมแฟ้มออกแบบ พนักงานหันมอง','ฉันมาที่นี่เพื่อทำงาน ไม่ใช่เพื่อเรื่องส่วนตัว'],['ห้องประชุม','เฉินหว่านหรูมองเธออย่างประหลาดใจ','เธอได้เข้าทีมออกแบบนี้ด้วยเหรอ'],['ห้องประชุม','เวินฉวีกงเปิดแฟ้มผลงานและแนะนำเฉินหว่านชิง','ผลงานของเธอจะเป็นหัวใจของคอลเลกชันนี้'],['ห้องประชุม','เฉินหว่านชิงยิ้มเล็กน้อยและเริ่มนำเสนอแบบ','ฉันจะพิสูจน์ด้วยผลงานค่ะ'] ]},
-{title:'ความจริงของท่านประธาน',shots:[['ห้องประชุมใหญ่','ผู้บริหารเปิดเผยตำแหน่งของเวินฉวีกง เฉินหว่านหรูชะงัก','คุณคือประธานบริษัทจริงๆ เหรอ'],['ห้องประชุมใหญ่','เวินฉวีกงยืนเคียงข้างเฉินหว่านชิงอย่างสงบ','การตัดสินใจครั้งนี้เป็นของผม'],['ห้องประชุมใหญ่','เฉินหว่านชิงมองเขาอย่างประหลาดใจ','คุณไม่จำเป็นต้องปกป้องฉันก็ได้'],['ห้องประชุมใหญ่','เวินฉวีกงยิ้มบางๆ','ผมเลือกยืนข้างคนที่ผมเชื่อใจ'] ]},
-{title:'คำตอบจากหัวใจ',shots:[['ห้องจดทะเบียนสมรส','ทั้งคู่กลับมายืนที่เดิมพร้อมรอยยิ้ม','จำวันที่เราเป็นคนแปลกหน้ากันได้ไหม'],['สวนหน้าบริษัท','เวินฉวีกงจับมือเฉินหว่านชิงอย่างอ่อนโยน','ผมอยากให้ทุกวันต่อจากนี้เป็นการเลือกกันและกัน'],['สวนหน้าบริษัท','เฉินหว่านชิงหัวเราะเบาๆ และพยักหน้า','งั้นเรามาเริ่มต้นใหม่ด้วยกัน'],['สวนหน้าบริษัท','ทั้งคู่เดินเคียงข้างกัน แสงอาทิตย์อบอุ่นและภาพค่อยๆ fade out','เรื่องราวของเรายังมีอีกหลายหน้า'] ]}
+{title:'วันแต่งงานที่ไม่มีเจ้าบ่าว',shots:[['ห้องจดทะเบียนสมรส','เฉินหว่านหรูเดินเข้ามาอย่างเย้ยหยัน เฉินหว่านชิงถือแฟ้มเอกสารและพยายามตั้งสติ','คู่หมั้นของเธอเปลี่ยนใจแล้ว เขาเลือกฉัน'],['ห้องจดทะเบียนสมรส','เฉินหว่านชิงมองเอกสารในมือ ก่อนเงยหน้าขึ้นอย่างเด็ดเดี่ยว','ฉันไม่เสียเวลารอคนที่ไม่เห็นค่าฉัน'],['ห้องจดทะเบียนสมรส','เวินฉวีกงยื่นปากกาให้เธออย่างสุภาพ','ถ้าคุณต้องการ เราจดทะเบียนด้วยกันได้'],['ห้องจดทะเบียนสมรส','ทั้งสองสบตากันอย่างลังเล เจ้าหน้าที่รออยู่ตรงหน้า','คุณแน่ใจหรือคะว่าเราควรทำแบบนี้']]},
+{title:'การพบกันในบริษัท',shots:[['โถงบริษัทจิวเวลรี่','เฉินหว่านชิงเดินเข้าบริษัทพร้อมแฟ้มออกแบบ พนักงานหันมอง','ฉันมาที่นี่เพื่อทำงาน ไม่ใช่เพื่อเรื่องส่วนตัว'],['ห้องประชุม','เฉินหว่านหรูมองเธออย่างประหลาดใจ','เธอได้เข้าทีมออกแบบนี้ด้วยเหรอ'],['ห้องประชุม','เวินฉวีกงเปิดแฟ้มผลงานและแนะนำเฉินหว่านชิง','ผลงานของเธอจะเป็นหัวใจของคอลเลกชันนี้'],['ห้องประชุม','เฉินหว่านชิงยิ้มเล็กน้อยและเริ่มนำเสนอแบบ','ฉันจะพิสูจน์ด้วยผลงานค่ะ']]},
+{title:'ความจริงของท่านประธาน',shots:[['ห้องประชุมใหญ่','ผู้บริหารเปิดเผยตำแหน่งของเวินฉวีกง เฉินหว่านหรูชะงัก','คุณคือประธานบริษัทจริงๆ เหรอ'],['ห้องประชุมใหญ่','เวินฉวีกงยืนเคียงข้างเฉินหว่านชิงอย่างสงบ','การตัดสินใจครั้งนี้เป็นของผม'],['ห้องประชุมใหญ่','เฉินหว่านชิงมองเขาอย่างประหลาดใจ','คุณไม่จำเป็นต้องปกป้องฉันก็ได้'],['ห้องประชุมใหญ่','เวินฉวีกงยิ้มบางๆ','ผมเลือกยืนข้างคนที่ผมเชื่อใจ']]},
+{title:'คำตอบจากหัวใจ',shots:[['ห้องจดทะเบียนสมรส','ทั้งคู่กลับมายืนที่เดิมพร้อมรอยยิ้ม','จำวันที่เราเป็นคนแปลกหน้ากันได้ไหม'],['สวนหน้าบริษัท','เวินฉวีกงจับมือเฉินหว่านชิงอย่างอ่อนโยน','ผมอยากให้ทุกวันต่อจากนี้เป็นการเลือกกันและกัน'],['สวนหน้าบริษัท','เฉินหว่านชิงหัวเราะเบาๆ และพยักหน้า','งั้นเรามาเริ่มต้นใหม่ด้วยกัน'],['สวนหน้าบริษัท','ทั้งคู่เดินเคียงข้างกัน แสงอาทิตย์อบอุ่นและภาพค่อยๆ fade out','เรื่องราวของเรายังมีอีกหลายหน้า']]}
 ]};}
 function loadQuick(title){state.format='single';state.series={title,synopsis:'ตัวอย่างเรื่องสั้นหมวด'+labelCat[state.cat]+'ที่แก้ไขต่อได้: '+title,cast:[],episodes:[{title:'ตอนที่ 1',shots:[['สถานที่เปิดเรื่อง','ตัวละครหลักพบเหตุการณ์ที่ทำให้เรื่องราวเริ่มต้น','วันนี้มีเรื่องที่ฉันต้องตัดสินใจ'],['สถานที่เกิดเหตุ','ตัวละครเผชิญความท้าทายและพยายามหาทางออก','ฉันจะไม่ยอมแพ้ง่ายๆ'],['จุดเปลี่ยน','เกิดเหตุการณ์พลิกผันและเปิดเผยข้อมูลใหม่','เดี๋ยวก่อน เรื่องนี้มีบางอย่างไม่ถูกต้อง'],['ฉากจบ','ตัวละครตัดสินใจและทิ้งประเด็นให้ผู้ชมคิด','สุดท้ายแล้ว เราจะเลือกทำสิ่งที่ถูกต้องหรือไม่']]}]};render();}
 function createSeries(){if(!state.series){loadQuick('เรื่องใหม่ ('+labelCat[state.cat]+')');return;}render();}
@@ -385,16 +572,46 @@ function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 function buildText(){if(!state.series)return 'ยังไม่มีเรื่อง';let eb=extraBlock();return state.series.title+'\n'+(state.series.synopsis||'')+(eb?'\n'+eb:'')+'\n\n'+state.series.episodes.map((e,i)=>'EP'+(i+1)+' '+e.title+'\n'+e.shots.map((s,j)=>`SHOT ${j+1} | ${s[0]}\nภาพ/การกระทำ: ${s[1]}\nบทพูด (${langText()}): ${s[2]}`).join('\n\n')).join('\n\n');}
 function copyEpisode(){if(!state.series)return;let e=state.series.episodes[state.ep-1];let eb=extraBlock();let t=(eb?eb+'\n\n':'')+e.title+'\n'+e.shots.map((s,i)=>`SHOT ${i+1} | ${s[0]}\n${s[1]}\nบทพูด (${langText()}): ${s[2]}`).join('\n\n');copy(t)}
 function copyAll(){copy(buildText())}
-function copy(t){if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>alert('คัดลอกแล้ว')).catch(()=>fallbackCopy(t));}else fallbackCopy(t)}
+function copy(t){if(!t){alert('ไม่มีข้อความให้คัดลอก');return;}if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>alert('คัดลอกแล้ว')).catch(()=>fallbackCopy(t));}else fallbackCopy(t)}
 function fallbackCopy(t){let a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();alert('คัดลอกแล้ว')}
-function downloadTxt(){download('AI-Clip-Studio.txt',buildText(),'text/plain;charset=utf-8')}
-function downloadJson(){download('AI-Clip-Studio.json',JSON.stringify(state.series,null,2),'application/json')}
+function downloadTxt(){download('BAO-SAKON-AI.txt',buildText(),'text/plain;charset=utf-8')}
+function downloadJson(){download('BAO-SAKON-AI.json',JSON.stringify(state.series,null,2),'application/json')}
 function download(name,data,type){let b=new Blob([data],{type}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
 function importFile(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);state.series=x;state.ep=1;render()}catch{loadQuick('นำเข้าไฟล์ข้อความ');state.series.synopsis=String(r.result);render()}};r.readAsText(f)}
 function workflowPreset(v){setPlatform(v);alert('ปรับโหมด '+(v==='meta'?'Meta AI':'Google Flow'))}
-function copyWorkflow(){copy('Google Flow: ใช้ภาพอ้างอิงและตรวจสอบเครดิต/ข้อจำกัด\\nMeta AI: เหมาะทดลองสร้างคลิปสั้น ตรวจสอบสิทธิ์บัญชี\\nManus AI: ช่วยวางแผนและจัดการงาน\\nAPI: เชื่อมบริการที่มี API ใช้งานได้ ตรวจสอบราคาและชื่อโมเดล');}
+function copyWorkflow(){copy('Google Flow: ใช้ภาพอ้างอิงและตรวจสอบเครดิต/ข้อจำกัด\nMeta AI: เหมาะทดลองสร้างคลิปสั้น ตรวจสอบสิทธิ์บัญชี\nManus AI: ช่วยวางแผนและจัดการงาน\nAPI: เชื่อมบริการที่มี API ใช้งานได้ ตรวจสอบราคาและชื่อโมเดล');}
+
 updateSummary();
 rebuildCharPrompt();
-(function(){const r=document.getElementById("charRolePrompt");window.characterState={rolePrompt:""};if(r){r.addEventListener("input",()=>{window.characterState.rolePrompt=r.value.trim();rebuildCharPrompt();if(state.series)render()})}document.querySelectorAll(".char-role-chip").forEach(c=>{c.addEventListener("click",()=>{const t="ให้ตัวละครแสดงเป็น: "+c.dataset.role;if(r)r.value=t;window.characterState.rolePrompt=t;rebuildCharPrompt();if(state.series)render()})});window.getCharacterPromptBlock=function(){const role=(r?r.value.trim():"")||window.characterState.rolePrompt||"";return role?"[คำสั่งบทบาทตัวละครรวม]: "+role:"";}})();
+buildImageStudioPrompt();
+showScreen('home');
+
+(function(){
+  const r=document.getElementById("charRolePrompt");
+  window.characterState={rolePrompt:""};
+  if(r){
+    r.addEventListener("input",()=>{
+      window.characterState.rolePrompt=r.value.trim();
+      rebuildCharPrompt();
+      buildImageStudioPrompt();
+      if(state.series)render();
+    });
+  }
+  document.querySelectorAll(".char-role-chip").forEach(c=>{
+    c.addEventListener("click",()=>{
+      const t="ให้ตัวละครแสดงเป็น: "+c.dataset.role;
+      if(r)r.value=t;
+      window.characterState.rolePrompt=t;
+      rebuildCharPrompt();
+      buildImageStudioPrompt();
+      if(state.series)render();
+    });
+  });
+  window.getCharacterPromptBlock=function(){
+    const role=(r?r.value.trim():"")||window.characterState.rolePrompt||"";
+    return role?"[คำสั่งบทบาทตัวละครรวม]: "+role:"";
+  };
+})();
 </script>
-</body></html>
+</body>
+</html>
