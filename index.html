@@ -27,7 +27,8 @@ main{max-width:800px;margin:auto;padding:14px;display:grid;gap:14px}.panel{backg
 <div class="row"><span class="label">ทำคลิปใน</span><button class="pill active" id="flow" onclick="setPlatform('flow')">🎬 Google Flow</button><button class="pill" id="meta" onclick="setPlatform('meta')">♾️ Meta AI</button></div>
 <div class="row"><span class="label">ความยาว</span><button class="pill active" data-dur="30" onclick="setDuration(30)">30 วิ</button><button class="pill" data-dur="60" onclick="setDuration(60)">1 นาที</button><button class="pill" data-dur="90" onclick="setDuration(90)">1 นาทีครึ่ง</button></div>
 <div class="row"><span class="label">รูปแบบ</span><button class="pill active" id="single" onclick="setFormat('single')">จบในตอนเดียว</button><button class="pill" id="series" onclick="setFormat('series')">ซีรีส์ต่อเนื่อง</button></div>
-<div id="summary" class="summary"></div>
+<div id="summary" class="summary"></div> 
+  <div id="char-role-panel">...</div>
 <button class="primary" onclick="createSeries()">✨ สร้างแผนเรื่องและบท</button>
 </section>
 <section class="panel section">
@@ -95,5 +96,6 @@ function importFile(e){let f=e.target.files[0];if(!f)return;let r=new FileReader
 function workflowPreset(v){setPlatform(v);alert('ปรับโหมด '+(v==='meta'?'Meta AI':'Google Flow'))}
 function copyWorkflow(){copy('Google Flow: ใช้ภาพอ้างอิงและตรวจสอบเครดิต/ข้อจำกัด\\nMeta AI: เหมาะทดลองสร้างคลิปสั้น ตรวจสอบสิทธิ์บัญชี\\nManus AI: ช่วยวางแผนและจัดการงาน\\nAPI: เชื่อมบริการที่มี API ใช้งานได้ ตรวจสอบราคาและชื่อโมเดล');}
 updateSummary();
+(function(){const i=document.getElementById("charImageInput"),b=document.getElementById("charPreviewBox"),p=document.getElementById("charPreviewImg"),r=document.getElementById("charRolePrompt");window.characterState={imageDataUrl:"",fileName:"",rolePrompt:""};if(i){i.addEventListener("change",e=>{const f=e.target.files&&e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=()=>{window.characterState.imageDataUrl=rd.result;window.characterState.fileName=f.name;if(p)p.src=rd.result;if(b)b.style.display="flex"};rd.readAsDataURL(f)})}if(r){r.addEventListener("input",()=>{window.characterState.rolePrompt=r.value.trim()})}document.querySelectorAll(".char-role-chip").forEach(c=>{c.addEventListener("click",()=>{const t="ให้ตัวละครในรูปภาพนี้แสดงเป็น: "+c.dataset.role;if(r)r.value=t;window.characterState.rolePrompt=t})});window.getCharacterPromptBlock=function(){const role=(r?r.value.trim():"")||window.characterState.rolePrompt||"",hasImg=Boolean(window.characterState.imageDataUrl);if(!hasImg&&!role)return"";const out=[];if(hasImg)out.push("[อ้างอิงรูปตัวละคร: "+(window.characterState.fileName||"uploaded_character")+"] รักษาใบหน้า โครงหน้า และเอกลักษณ์ของตัวละครจากรูปให้เหมือนเดิมในทุกฉาก");if(role)out.push("[คำสั่งบทบาทตัวละคร]: "+role);return out.join("\n")}})();
 </script>
 </body></html>
